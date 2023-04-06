@@ -11,7 +11,7 @@ import SwiftUI
 struct PongPongApp: App {
     var body: some Scene {
         WindowGroup {
-            HomeView()
+            TabBarView()
         }
     }
 }

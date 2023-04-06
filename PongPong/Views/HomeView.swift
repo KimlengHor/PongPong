@@ -6,20 +6,15 @@
 //
 
 import SwiftUI
-import SDWebImageSwiftUI
 
 struct HomeView: View {
-    
-    @State private var searchText: String = ""
+
     @StateObject private var vm = HomeViewModel()
-    @State var searchTask: Task<(), Never>?
     
     var body: some View {
         NavigationView {
             ScrollView(showsIndicators: false) {
                 VStack(spacing: 20) {
-                    
-                    searchTextFiled
                     
                     Divider()
                     
@@ -35,7 +30,7 @@ struct HomeView: View {
                     
                     VStack(alignment: .leading) {
                         CategoryTitle(text: "All Books")
-                        allBookList
+                        VerticalBookList(books: vm.books)
                             .padding(.top, 7)
                     }
                     .padding(.top)
@@ -50,33 +45,10 @@ struct HomeView: View {
             }
         }
         .task {
-            await vm.fetchBooks()
-        }
-        .onDisappear {
-            searchTask?.cancel()
-        }
-    }
-    
-    private var searchTextFiled: some View {
-        HStack(spacing: 10) {
-            Image(systemName: "magnifyingglass")
-                .renderingMode(.original)
-                .foregroundColor(.gray)
-            TextField(text: $searchText) {
-                Text("Find the book")
-            }
-            .submitLabel(.search)
-            .onSubmit {
-                searchTask = Task {
-                    await vm.searchBooks(searchText: searchText)
-                }
+            if vm.books.count == 0 {
+                await vm.fetchBooks()
             }
         }
-        .padding(.leading)
-        .frame(maxWidth: .infinity)
-        .frame(height: 55)
-        .background(Color.gray.opacity(0.1))
-        .cornerRadius(10)
     }
     
     private var recentBookList: some View {
@@ -93,31 +65,6 @@ struct HomeView: View {
                     }
                 }
             }
-        }
-    }
-    
-    private var allBookList: some View {
-        ForEach(vm.books) { book in
-            NavigationLink(destination: BookContentView(bookContents: book.contents)) {
-                HStack(spacing: 20) {
-                    BookCover(content: WebImage(url: URL(string: book.cover ?? ""))
-                        .resizable())
-                    
-                    VStack(alignment: .leading, spacing: 5) {
-                        ContentTitle(text: book.capitalizedTitle() ?? "")
-                        VStack(alignment: .leading, spacing: 13) {
-                            RatingView(rating: String(book.rating ?? 0))
-                            Text(book.description ?? "")
-                                .font(.subheadline)
-                                .foregroundColor(Color.gray)
-                                .multilineTextAlignment(.leading)
-                        }
-                    }
-                    
-                    Spacer()
-                }
-            }
-            .foregroundColor(Color(.label))
         }
     }
 }

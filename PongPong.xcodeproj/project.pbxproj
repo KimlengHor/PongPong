@@ -25,6 +25,10 @@
 		718D38BF29DF0EED0055CBC4 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718D38BE29DF0EED0055CBC4 /* HomeViewModel.swift */; };
 		718D38C229DF18CD0055CBC4 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 718D38C129DF18CD0055CBC4 /* SDWebImageSwiftUI */; };
 		718D38C829DF44A60055CBC4 /* FirebaseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718D38C729DF44A60055CBC4 /* FirebaseConstants.swift */; };
+		71A3FDE129DF751B0072EA07 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A3FDE029DF751B0072EA07 /* TabBarView.swift */; };
+		71A3FDE329DF76780072EA07 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A3FDE229DF76780072EA07 /* SearchView.swift */; };
+		71A3FDE529DF77A10072EA07 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A3FDE429DF77A10072EA07 /* SearchViewModel.swift */; };
+		71A3FDE729DF7B230072EA07 /* VerticalBookList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A3FDE629DF7B230072EA07 /* VerticalBookList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +47,10 @@
 		718D38BC29DE52080055CBC4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		718D38BE29DF0EED0055CBC4 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		718D38C729DF44A60055CBC4 /* FirebaseConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseConstants.swift; sourceTree = "<group>"; };
+		71A3FDE029DF751B0072EA07 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
+		71A3FDE229DF76780072EA07 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		71A3FDE429DF77A10072EA07 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		71A3FDE629DF7B230072EA07 /* VerticalBookList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalBookList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +114,8 @@
 			children = (
 				715C725329DCA10A002A8B81 /* HomeView.swift */,
 				718D38AC29DCDD4F0055CBC4 /* BookContentView.swift */,
+				71A3FDE029DF751B0072EA07 /* TabBarView.swift */,
+				71A3FDE229DF76780072EA07 /* SearchView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -117,6 +127,7 @@
 				718D38A629DCB4F60055CBC4 /* ContentTitle.swift */,
 				718D38A829DCC6210055CBC4 /* BookCover.swift */,
 				718D38AA29DCD0F30055CBC4 /* RatingView.swift */,
+				71A3FDE629DF7B230072EA07 /* VerticalBookList.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -141,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				718D38BE29DF0EED0055CBC4 /* HomeViewModel.swift */,
+				71A3FDE429DF77A10072EA07 /* SearchViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -242,8 +254,12 @@
 				718D38B729DE4DA70055CBC4 /* FirebaseManager.swift in Sources */,
 				718D38BA29DE4E040055CBC4 /* Book.swift in Sources */,
 				718D38AB29DCD0F30055CBC4 /* RatingView.swift in Sources */,
+				71A3FDE529DF77A10072EA07 /* SearchViewModel.swift in Sources */,
+				71A3FDE329DF76780072EA07 /* SearchView.swift in Sources */,
 				718D38A729DCB4F60055CBC4 /* ContentTitle.swift in Sources */,
+				71A3FDE729DF7B230072EA07 /* VerticalBookList.swift in Sources */,
 				718D38C829DF44A60055CBC4 /* FirebaseConstants.swift in Sources */,
+				71A3FDE129DF751B0072EA07 /* TabBarView.swift in Sources */,
 				715C725429DCA10A002A8B81 /* HomeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -376,6 +392,8 @@
 				DEVELOPMENT_TEAM = TBVM4H3583;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Pong Pong";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.books";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -405,6 +423,8 @@
 				DEVELOPMENT_TEAM = TBVM4H3583;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Pong Pong";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.books";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
