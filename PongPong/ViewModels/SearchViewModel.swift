@@ -14,14 +14,37 @@ class SearchViewModel: ObservableObject {
     @Published var showingAlert = false
     @Published var errorMessage = ""
     
+    private var lastDocumentSnapshot: QueryDocumentSnapshot?
+    private var isFetchingMore = true
+    
     func searchBooks(searchText: String) async {
+        
+        if isFetchingMore == false {
+            return
+        }
+        
         do {
-            let documents = try await FirebaseManager.shared.firestore
+            
+            let bookCollection = FirebaseManager.shared.firestore
                 .collection(FirebaseConstants.bookCollection)
-                .whereField(FirebaseConstants.titleField, isGreaterThanOrEqualTo: searchText.lowercased())
-                .whereField(FirebaseConstants.titleField, isLessThan: (searchText.lowercased() + "z"))
-                .getDocuments()
-                .documents
+            var documents = [QueryDocumentSnapshot]()
+            
+            if let lastDocumentSnapshot = lastDocumentSnapshot {
+                documents = try await bookCollection
+                    .start(afterDocument: lastDocumentSnapshot)
+                    .limit(to: 5)
+                    .whereField(FirebaseConstants.titleField, isGreaterThanOrEqualTo: searchText.lowercased())
+                    .whereField(FirebaseConstants.titleField, isLessThan: (searchText.lowercased() + "z"))
+                    .getDocuments()
+                    .documents
+            } else {
+                documents = try await bookCollection
+                    .limit(to: 5)
+                    .whereField(FirebaseConstants.titleField, isGreaterThanOrEqualTo: searchText.lowercased())
+                    .whereField(FirebaseConstants.titleField, isLessThan: (searchText.lowercased() + "z"))
+                    .getDocuments()
+                    .documents
+            }
             
             books.removeAll()
             

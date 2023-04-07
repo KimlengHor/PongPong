@@ -18,7 +18,7 @@ struct VerticalBookList: View {
                 HStack(spacing: 20) {
                     BookCover(content: WebImage(url: URL(string: book.cover ?? ""))
                         .resizable())
-                    
+
                     VStack(alignment: .leading, spacing: 5) {
                         ContentTitle(text: book.capitalizedTitle() ?? "")
                         VStack(alignment: .leading, spacing: 13) {
@@ -29,7 +29,7 @@ struct VerticalBookList: View {
                                 .multilineTextAlignment(.leading)
                         }
                     }
-                    
+
                     Spacer()
                 }
             }
