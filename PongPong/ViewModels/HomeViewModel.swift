@@ -13,13 +13,38 @@ class HomeViewModel: ObservableObject {
     @Published var books = [Book]()
     @Published var showingAlert = false
     @Published var errorMessage = ""
+     
+    private var lastDocumentSnapshot: QueryDocumentSnapshot?
+    private var isFetchingMore = true
     
     func fetchBooks() async {
+        
+        if isFetchingMore == false {
+            return
+        }
+        
         do {
-            let documents = try await FirebaseManager.shared.firestore
+            let bookCollection = FirebaseManager.shared.firestore
                 .collection(FirebaseConstants.bookCollection)
-                .getDocuments()
-                .documents
+            var documents = [QueryDocumentSnapshot]()
+            
+            if let lastDocumentSnapshot = lastDocumentSnapshot {
+                documents = try await bookCollection
+                    .start(afterDocument: lastDocumentSnapshot)
+                    .limit(to: 5)
+                    .getDocuments()
+                    .documents
+            } else {
+                documents = try await bookCollection
+                    .limit(to: 5)
+                    .getDocuments()
+                    .documents
+            }
+            
+            if documents.isEmpty {
+                isFetchingMore = false
+            }
+            
             documents.forEach { snapshot in
                 do {
                     let book = try snapshot.data(as: Book.self)
@@ -29,6 +54,9 @@ class HomeViewModel: ObservableObject {
                     errorMessage = error.localizedDescription
                 }
             }
+            
+            //keep track the last document for pagination
+            lastDocumentSnapshot = documents.last
         } catch {
             showingAlert = true
             errorMessage = error.localizedDescription
