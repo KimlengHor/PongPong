@@ -30,6 +30,16 @@
 		718D38BF29DF0EED0055CBC4 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718D38BE29DF0EED0055CBC4 /* HomeViewModel.swift */; };
 		718D38C229DF18CD0055CBC4 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 718D38C129DF18CD0055CBC4 /* SDWebImageSwiftUI */; };
 		718D38C829DF44A60055CBC4 /* FirebaseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718D38C729DF44A60055CBC4 /* FirebaseConstants.swift */; };
+		718EE03C29E1CA21006FD476 /* SigninView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718EE03B29E1CA21006FD476 /* SigninView.swift */; };
+		718EE03E29E1D422006FD476 /* TextFieldWithTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718EE03D29E1D422006FD476 /* TextFieldWithTitle.swift */; };
+		718EE04029E1DA48006FD476 /* NavigationSubtitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718EE03F29E1DA48006FD476 /* NavigationSubtitle.swift */; };
+		718EE04329E1E062006FD476 /* FirebaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718EE04229E1E062006FD476 /* FirebaseAuthManager.swift */; };
+		718EE04529E1E6AA006FD476 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718EE04429E1E6AA006FD476 /* SignInViewModel.swift */; };
+		718EE04729E1EE7A006FD476 /* SecureTextFieldWIthTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718EE04629E1EE7A006FD476 /* SecureTextFieldWIthTitle.swift */; };
+		718EE04D29E1F494006FD476 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 718EE04929E1F493006FD476 /* Poppins-Medium.ttf */; };
+		718EE04E29E1F494006FD476 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 718EE04A29E1F493006FD476 /* Poppins-SemiBold.ttf */; };
+		718EE04F29E1F494006FD476 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 718EE04B29E1F493006FD476 /* Poppins-Regular.ttf */; };
+		718EE05029E1F494006FD476 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 718EE04C29E1F494006FD476 /* Poppins-Bold.ttf */; };
 		71A3FDE129DF751B0072EA07 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A3FDE029DF751B0072EA07 /* TabBarView.swift */; };
 		71A3FDE329DF76780072EA07 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A3FDE229DF76780072EA07 /* SearchView.swift */; };
 		71A3FDE529DF77A10072EA07 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A3FDE429DF77A10072EA07 /* SearchViewModel.swift */; };
@@ -57,6 +67,17 @@
 		718D38BC29DE52080055CBC4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		718D38BE29DF0EED0055CBC4 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		718D38C729DF44A60055CBC4 /* FirebaseConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseConstants.swift; sourceTree = "<group>"; };
+		718EE03B29E1CA21006FD476 /* SigninView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninView.swift; sourceTree = "<group>"; };
+		718EE03D29E1D422006FD476 /* TextFieldWithTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithTitle.swift; sourceTree = "<group>"; };
+		718EE03F29E1DA48006FD476 /* NavigationSubtitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationSubtitle.swift; sourceTree = "<group>"; };
+		718EE04229E1E062006FD476 /* FirebaseAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthManager.swift; sourceTree = "<group>"; };
+		718EE04429E1E6AA006FD476 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
+		718EE04629E1EE7A006FD476 /* SecureTextFieldWIthTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureTextFieldWIthTitle.swift; sourceTree = "<group>"; };
+		718EE04929E1F493006FD476 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
+		718EE04A29E1F493006FD476 /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
+		718EE04B29E1F493006FD476 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
+		718EE04C29E1F494006FD476 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
+		718EE05129E1F4E2006FD476 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		71A3FDE029DF751B0072EA07 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		71A3FDE229DF76780072EA07 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		71A3FDE429DF77A10072EA07 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
@@ -97,10 +118,12 @@
 		715C724329DCA0A7002A8B81 /* PongPong */ = {
 			isa = PBXGroup;
 			children = (
+				718EE05129E1F4E2006FD476 /* Info.plist */,
+				718EE04829E1F487006FD476 /* Fonts */,
 				718D38C629DF44980055CBC4 /* Constants */,
 				718D38BB29DE50D40055CBC4 /* ViewModels */,
 				718D38B829DE4DF10055CBC4 /* Models */,
-				718D38B529DE4D950055CBC4 /* Utils */,
+				718D38B529DE4D950055CBC4 /* Apis */,
 				718D38A329DCB39C0055CBC4 /* Components */,
 				715C725229DCA0F0002A8B81 /* Views */,
 				715C724429DCA0A7002A8B81 /* PongPongApp.swift */,
@@ -128,6 +151,7 @@
 				71A3FDE229DF76780072EA07 /* SearchView.swift */,
 				71788A6429E0BC6300D8883D /* WelcomeView.swift */,
 				71788A6629E0C6BB00D8883D /* SignupView.swift */,
+				718EE03B29E1CA21006FD476 /* SigninView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -143,16 +167,19 @@
 				71788A6229E06F9E00D8883D /* OffsettableScrollView.swift */,
 				71788A6829E0C72F00D8883D /* CustomButton.swift */,
 				71788A6A29E0DE0900D8883D /* ButtonWithLeadingText.swift */,
+				718EE03D29E1D422006FD476 /* TextFieldWithTitle.swift */,
+				718EE03F29E1DA48006FD476 /* NavigationSubtitle.swift */,
+				718EE04629E1EE7A006FD476 /* SecureTextFieldWIthTitle.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
 		};
-		718D38B529DE4D950055CBC4 /* Utils */ = {
+		718D38B529DE4D950055CBC4 /* Apis */ = {
 			isa = PBXGroup;
 			children = (
-				718D38B629DE4DA70055CBC4 /* FirebaseManager.swift */,
+				718EE04129E1DE6A006FD476 /* Firebase */,
 			);
-			path = Utils;
+			path = Apis;
 			sourceTree = "<group>";
 		};
 		718D38B829DE4DF10055CBC4 /* Models */ = {
@@ -168,6 +195,7 @@
 			children = (
 				718D38BE29DF0EED0055CBC4 /* HomeViewModel.swift */,
 				71A3FDE429DF77A10072EA07 /* SearchViewModel.swift */,
+				718EE04429E1E6AA006FD476 /* SignInViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -178,6 +206,26 @@
 				718D38C729DF44A60055CBC4 /* FirebaseConstants.swift */,
 			);
 			path = Constants;
+			sourceTree = "<group>";
+		};
+		718EE04129E1DE6A006FD476 /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				718D38B629DE4DA70055CBC4 /* FirebaseManager.swift */,
+				718EE04229E1E062006FD476 /* FirebaseAuthManager.swift */,
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
+		718EE04829E1F487006FD476 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				718EE04C29E1F494006FD476 /* Poppins-Bold.ttf */,
+				718EE04929E1F493006FD476 /* Poppins-Medium.ttf */,
+				718EE04B29E1F493006FD476 /* Poppins-Regular.ttf */,
+				718EE04A29E1F493006FD476 /* Poppins-SemiBold.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -248,7 +296,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				718EE04E29E1F494006FD476 /* Poppins-SemiBold.ttf in Resources */,
 				715C724C29DCA0AE002A8B81 /* Preview Assets.xcassets in Resources */,
+				718EE05029E1F494006FD476 /* Poppins-Bold.ttf in Resources */,
+				718EE04D29E1F494006FD476 /* Poppins-Medium.ttf in Resources */,
+				718EE04F29E1F494006FD476 /* Poppins-Regular.ttf in Resources */,
 				718D38BD29DE52080055CBC4 /* GoogleService-Info.plist in Resources */,
 				715C724929DCA0AE002A8B81 /* Assets.xcassets in Resources */,
 			);
@@ -265,22 +317,28 @@
 				71788A6929E0C73000D8883D /* CustomButton.swift in Sources */,
 				718D38A929DCC6210055CBC4 /* BookCover.swift in Sources */,
 				718D38AD29DCDD4F0055CBC4 /* BookContentView.swift in Sources */,
+				718EE04029E1DA48006FD476 /* NavigationSubtitle.swift in Sources */,
+				718EE03E29E1D422006FD476 /* TextFieldWithTitle.swift in Sources */,
 				715C724529DCA0A7002A8B81 /* PongPongApp.swift in Sources */,
+				718EE03C29E1CA21006FD476 /* SigninView.swift in Sources */,
 				718D38BF29DF0EED0055CBC4 /* HomeViewModel.swift in Sources */,
 				718D38A529DCB3AD0055CBC4 /* CategoryTitle.swift in Sources */,
 				71788A6B29E0DE0900D8883D /* ButtonWithLeadingText.swift in Sources */,
 				71788A6529E0BC6300D8883D /* WelcomeView.swift in Sources */,
 				718D38B729DE4DA70055CBC4 /* FirebaseManager.swift in Sources */,
 				718D38BA29DE4E040055CBC4 /* Book.swift in Sources */,
+				718EE04529E1E6AA006FD476 /* SignInViewModel.swift in Sources */,
 				718D38AB29DCD0F30055CBC4 /* RatingView.swift in Sources */,
 				71A3FDE529DF77A10072EA07 /* SearchViewModel.swift in Sources */,
 				71A3FDE329DF76780072EA07 /* SearchView.swift in Sources */,
 				718D38A729DCB4F60055CBC4 /* ContentTitle.swift in Sources */,
+				718EE04329E1E062006FD476 /* FirebaseAuthManager.swift in Sources */,
 				71A3FDE729DF7B230072EA07 /* VerticalBookList.swift in Sources */,
 				718D38C829DF44A60055CBC4 /* FirebaseConstants.swift in Sources */,
 				71A3FDE129DF751B0072EA07 /* TabBarView.swift in Sources */,
 				715C725429DCA10A002A8B81 /* HomeView.swift in Sources */,
 				71788A6329E06F9E00D8883D /* OffsettableScrollView.swift in Sources */,
+				718EE04729E1EE7A006FD476 /* SecureTextFieldWIthTitle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,6 +470,7 @@
 				DEVELOPMENT_TEAM = TBVM4H3583;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PongPong/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Pong Pong";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.books";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -443,6 +502,7 @@
 				DEVELOPMENT_TEAM = TBVM4H3583;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PongPong/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Pong Pong";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.books";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
