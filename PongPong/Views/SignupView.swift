@@ -26,7 +26,7 @@ struct SignupView: View {
                     
                     signInButton
                 }
-                .padding(.top, 30)
+                .padding(.top, 20)
                 
                 Spacer()
             }

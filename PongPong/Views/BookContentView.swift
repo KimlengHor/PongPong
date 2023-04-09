@@ -49,18 +49,16 @@ struct BookContentView: View {
     
     private var topNavBarView: some View {
         HStack {
+            Spacer()
+            
             Button {
                 presentationMode.wrappedValue.dismiss()
             } label: {
-                Image(systemName: "chevron.backward")
+                Image(systemName: "xmark.circle.fill")
                     .foregroundColor(.white)
-                    .font(.largeTitle)
-                Text("Back")
-                    .foregroundColor(.white)
+                    .font(.title)
             }
             .padding()
-            
-            Spacer()
         }
         .background(Color.black.opacity(0.5))
     }

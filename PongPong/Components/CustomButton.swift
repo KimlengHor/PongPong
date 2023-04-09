@@ -25,8 +25,8 @@ struct CustomButton: View {
                         .padding(.leading)
                 }
                 Text(title)
-                    .font(.custom("Poppins-Bold", size: 16))
-                    .frame(height: 70)
+                    .font(FontConstants.fifteenMedium)
+                    .frame(height: 60)
                     .frame(maxWidth: .infinity)
             }
         }

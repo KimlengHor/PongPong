@@ -14,7 +14,7 @@ struct HomeView: View {
     var body: some View {
         NavigationView {
             ScrollView(showsIndicators: false) {
-                VStack(spacing: 20) {
+                VStack(spacing: 15) {
                     
                     Divider()
                     
@@ -22,7 +22,7 @@ struct HomeView: View {
                         CategoryTitle(text: "Recent Books")
                         recentBookList
                             .frame(height: 255)
-                            .padding(.top, 7)
+                            .padding(.top, 5)
                     }
                     .padding(.top)
                                         
@@ -31,7 +31,7 @@ struct HomeView: View {
                     VStack(alignment: .leading) {
                         CategoryTitle(text: "All Books")
                         VerticalBookList(books: vm.books)
-                            .padding(.top, 7)
+                            .padding(.top, 5)
                     }
                     .padding(.top)
                     

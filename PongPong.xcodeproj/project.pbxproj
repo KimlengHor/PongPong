@@ -44,6 +44,7 @@
 		71A3FDE329DF76780072EA07 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A3FDE229DF76780072EA07 /* SearchView.swift */; };
 		71A3FDE529DF77A10072EA07 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A3FDE429DF77A10072EA07 /* SearchViewModel.swift */; };
 		71A3FDE729DF7B230072EA07 /* VerticalBookList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A3FDE629DF7B230072EA07 /* VerticalBookList.swift */; };
+		71C1D84129E30A9F00A7A526 /* FontConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C1D84029E30A9F00A7A526 /* FontConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +83,7 @@
 		71A3FDE229DF76780072EA07 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		71A3FDE429DF77A10072EA07 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		71A3FDE629DF7B230072EA07 /* VerticalBookList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalBookList.swift; sourceTree = "<group>"; };
+		71C1D84029E30A9F00A7A526 /* FontConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -204,6 +206,7 @@
 			isa = PBXGroup;
 			children = (
 				718D38C729DF44A60055CBC4 /* FirebaseConstants.swift */,
+				71C1D84029E30A9F00A7A526 /* FontConstants.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -322,6 +325,7 @@
 				715C724529DCA0A7002A8B81 /* PongPongApp.swift in Sources */,
 				718EE03C29E1CA21006FD476 /* SigninView.swift in Sources */,
 				718D38BF29DF0EED0055CBC4 /* HomeViewModel.swift in Sources */,
+				71C1D84129E30A9F00A7A526 /* FontConstants.swift in Sources */,
 				718D38A529DCB3AD0055CBC4 /* CategoryTitle.swift in Sources */,
 				71788A6B29E0DE0900D8883D /* ButtonWithLeadingText.swift in Sources */,
 				71788A6529E0BC6300D8883D /* WelcomeView.swift in Sources */,

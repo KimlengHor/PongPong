@@ -24,7 +24,7 @@ struct SigninView: View {
                         TextFieldWithTitle(title: "Email", text: $emailAddress)
                         SecureTextFieldWithTitle(title: "Password", text: $password)
                     }
-                    .padding(.top, 30)
+                    .padding(.top, 20)
                     
                     VStack(spacing: 20) {
                         loginButton
@@ -39,7 +39,7 @@ struct SigninView: View {
                                 .foregroundColor(.gray)
                         }
                     }
-                    .padding(.top, 40)
+                    .padding(.top, 30)
                     
                     VStack(spacing: 10) {
                         signInWithApple
@@ -75,7 +75,7 @@ struct SigninView: View {
             
         } label: {
             Text("Forgot your pasword?")
-                .font(.headline)
+                .font(FontConstants.fifteenSemi)
                 .foregroundColor(.black)
         }
     }

@@ -13,18 +13,19 @@ struct SecureTextFieldWithTitle: View {
     @Binding var text: String
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 40) {
+        VStack(alignment: .leading, spacing: 30) {
             Text(title)
-                .font(.system(size: 18, weight: .bold))
+                .font(FontConstants.sixteenBold)
             
             SecureField(text: $text) {
-                Text("Enter your \(title)")
+                Text("Enter your \(title.lowercased())")
+                    .font(FontConstants.fifteenReg)
             }
             .padding(.leading)
             .overlay {
                 RoundedRectangle(cornerRadius: 10)
                     .stroke(Color.gray, lineWidth: 0.5)
-                    .frame(height: 70)
+                    .frame(height: 60)
             }
         }
     }
