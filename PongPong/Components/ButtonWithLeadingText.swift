@@ -16,11 +16,11 @@ struct ButtonWithLeadingText: View {
     var body: some View {
         HStack {
             Text(text)
-                .font(.headline)
+                .font(FontConstants.fifteenMedium)
             
             Button(action: action) {
                 Text(buttonText)
-                    .font(.headline)
+                    .font(FontConstants.fifteenSemi)
                     .foregroundColor(buttonColor)
             }
         }

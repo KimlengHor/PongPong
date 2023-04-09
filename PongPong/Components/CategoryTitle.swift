@@ -13,7 +13,7 @@ struct CategoryTitle: View {
     
     var body: some View {
         Text(text)
-            .font(.system(size: 20, weight: .bold, design: .default))
+            .font(FontConstants.eighteenSemi)
     }
 }
 

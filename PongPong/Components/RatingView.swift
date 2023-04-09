@@ -16,7 +16,7 @@ struct RatingView: View {
             Image(systemName: "star.fill")
                 .foregroundColor(.yellow)
             Text(rating)
-                .font(.subheadline)
+                .font(FontConstants.fifteenReg)
         }
     }
 }

@@ -13,7 +13,7 @@ struct ContentTitle: View {
     
     var body: some View {
         Text(text)
-            .font(.system(size: 16, weight: .medium, design: .default))
+            .font(FontConstants.sixteenBold)
     }
 }
 

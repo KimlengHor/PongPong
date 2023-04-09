@@ -13,10 +13,10 @@ struct NavigationSubtitle: View {
     
     var body: some View {
         Text(text)
-            .font(.custom("Poppins-Regular", size: 15))
+            .font(FontConstants.fifteenReg)
             .font(.body)
             .foregroundColor(Color.gray)
-            .padding(.top, -10)
+            .padding(.top, -15)
 //            .padding(.leading, -7)
     }
 }
