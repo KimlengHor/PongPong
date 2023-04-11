@@ -11,17 +11,18 @@ struct SigninView: View {
     
     @State var emailAddress: String = ""
     @State var password: String = ""
+    @State var showLoadingView: Bool = false
     
     @ObservedObject var vm = SigninViewModel()
     
     var body: some View {
-        NavigationStack {
+        ZStack {
             ScrollView {
                 VStack(alignment: .leading) {
                     NavigationSubtitle(text: "Choose one of the options to log in")
                     
                     VStack(spacing: 40) {
-                        TextFieldWithTitle(title: "Email", text: $emailAddress)
+                        TextFieldWithTitle(title: "Email", type: .emailAddress, text: $emailAddress)
                         SecureTextFieldWithTitle(title: "Password", text: $password)
                     }
                     .padding(.top, 20)
@@ -59,21 +60,28 @@ struct SigninView: View {
                 .padding(.vertical)
                 .padding(.horizontal, 24)
             }
+            .alert(isPresented: $vm.showingAlert) {
+                Alert(title: Text("Something is wrong"), message: Text(vm.errorMessage), dismissButton: .default(Text("Okay")))
+            }
+            
+            if showLoadingView {
+                LoadingView(text: "Signing in")
+            }
         }
     }
     
     private var loginButton: some View {
         CustomButton(action: {
             Task {
+                showLoadingView = true
                 await vm.signInUser(email: emailAddress, password: password)
+                showLoadingView = false
             }
         }, title: "Login", backgroundColor: .orange)
     }
     
     private var forgotPasswordButton: some View {
-        Button {
-            
-        } label: {
+        NavigationLink(destination: ForgotPasswordView()) {
             Text("Forgot your pasword?")
                 .font(FontConstants.fifteenSemi)
                 .foregroundColor(.black)
@@ -102,13 +110,11 @@ struct SigninView: View {
     }
     
     private var signUpButton: some View {
-        ButtonWithLeadingText(
+        NavButtonWithLeadingText(
             text: "Don't have an account?",
             buttonText: "Sign up",
             buttonColor: Color(.orange),
-            action: {
-                
-            })
+            destination: SignupView())
     }
 }
 
@@ -117,7 +123,4 @@ struct SigninView_Previews: PreviewProvider {
         SigninView()
     }
 }
-
-
-
 

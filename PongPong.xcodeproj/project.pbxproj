@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7151AC2A29E5C1520002388E /* NavCustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7151AC2929E5C1520002388E /* NavCustomButton.swift */; };
+		7151AC2C29E5C4670002388E /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7151AC2B29E5C4670002388E /* ForgotPasswordView.swift */; };
+		7151AC2E29E5CC3A0002388E /* SignupWithEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7151AC2D29E5CC3A0002388E /* SignupWithEmailView.swift */; };
+		7151AC3029E5CDE30002388E /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7151AC2F29E5CDE30002388E /* ForgotPasswordViewModel.swift */; };
 		715C724529DCA0A7002A8B81 /* PongPongApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715C724429DCA0A7002A8B81 /* PongPongApp.swift */; };
 		715C724929DCA0AE002A8B81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 715C724829DCA0AE002A8B81 /* Assets.xcassets */; };
 		715C724C29DCA0AE002A8B81 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 715C724B29DCA0AE002A8B81 /* Preview Assets.xcassets */; };
@@ -15,7 +19,7 @@
 		71788A6529E0BC6300D8883D /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71788A6429E0BC6300D8883D /* WelcomeView.swift */; };
 		71788A6729E0C6BB00D8883D /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71788A6629E0C6BB00D8883D /* SignupView.swift */; };
 		71788A6929E0C73000D8883D /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71788A6829E0C72F00D8883D /* CustomButton.swift */; };
-		71788A6B29E0DE0900D8883D /* ButtonWithLeadingText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71788A6A29E0DE0900D8883D /* ButtonWithLeadingText.swift */; };
+		71788A6B29E0DE0900D8883D /* NavButtonWithLeadingText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71788A6A29E0DE0900D8883D /* NavButtonWithLeadingText.swift */; };
 		718D38A529DCB3AD0055CBC4 /* CategoryTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718D38A429DCB3AD0055CBC4 /* CategoryTitle.swift */; };
 		718D38A729DCB4F60055CBC4 /* ContentTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718D38A629DCB4F60055CBC4 /* ContentTitle.swift */; };
 		718D38A929DCC6210055CBC4 /* BookCover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718D38A829DCC6210055CBC4 /* BookCover.swift */; };
@@ -45,9 +49,14 @@
 		71A3FDE529DF77A10072EA07 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A3FDE429DF77A10072EA07 /* SearchViewModel.swift */; };
 		71A3FDE729DF7B230072EA07 /* VerticalBookList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A3FDE629DF7B230072EA07 /* VerticalBookList.swift */; };
 		71C1D84129E30A9F00A7A526 /* FontConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C1D84029E30A9F00A7A526 /* FontConstants.swift */; };
+		71C1D84329E4E4E600A7A526 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C1D84229E4E4E600A7A526 /* LoadingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7151AC2929E5C1520002388E /* NavCustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavCustomButton.swift; sourceTree = "<group>"; };
+		7151AC2B29E5C4670002388E /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
+		7151AC2D29E5CC3A0002388E /* SignupWithEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupWithEmailView.swift; sourceTree = "<group>"; };
+		7151AC2F29E5CDE30002388E /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
 		715C724129DCA0A7002A8B81 /* PongPong.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PongPong.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		715C724429DCA0A7002A8B81 /* PongPongApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PongPongApp.swift; sourceTree = "<group>"; };
 		715C724829DCA0AE002A8B81 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -57,7 +66,7 @@
 		71788A6429E0BC6300D8883D /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		71788A6629E0C6BB00D8883D /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
 		71788A6829E0C72F00D8883D /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
-		71788A6A29E0DE0900D8883D /* ButtonWithLeadingText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonWithLeadingText.swift; sourceTree = "<group>"; };
+		71788A6A29E0DE0900D8883D /* NavButtonWithLeadingText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavButtonWithLeadingText.swift; sourceTree = "<group>"; };
 		718D38A429DCB3AD0055CBC4 /* CategoryTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTitle.swift; sourceTree = "<group>"; };
 		718D38A629DCB4F60055CBC4 /* ContentTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentTitle.swift; sourceTree = "<group>"; };
 		718D38A829DCC6210055CBC4 /* BookCover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCover.swift; sourceTree = "<group>"; };
@@ -84,6 +93,7 @@
 		71A3FDE429DF77A10072EA07 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		71A3FDE629DF7B230072EA07 /* VerticalBookList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalBookList.swift; sourceTree = "<group>"; };
 		71C1D84029E30A9F00A7A526 /* FontConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontConstants.swift; sourceTree = "<group>"; };
+		71C1D84229E4E4E600A7A526 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +164,8 @@
 				71788A6429E0BC6300D8883D /* WelcomeView.swift */,
 				71788A6629E0C6BB00D8883D /* SignupView.swift */,
 				718EE03B29E1CA21006FD476 /* SigninView.swift */,
+				7151AC2B29E5C4670002388E /* ForgotPasswordView.swift */,
+				7151AC2D29E5CC3A0002388E /* SignupWithEmailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -168,10 +180,12 @@
 				71A3FDE629DF7B230072EA07 /* VerticalBookList.swift */,
 				71788A6229E06F9E00D8883D /* OffsettableScrollView.swift */,
 				71788A6829E0C72F00D8883D /* CustomButton.swift */,
-				71788A6A29E0DE0900D8883D /* ButtonWithLeadingText.swift */,
+				71788A6A29E0DE0900D8883D /* NavButtonWithLeadingText.swift */,
 				718EE03D29E1D422006FD476 /* TextFieldWithTitle.swift */,
 				718EE03F29E1DA48006FD476 /* NavigationSubtitle.swift */,
 				718EE04629E1EE7A006FD476 /* SecureTextFieldWIthTitle.swift */,
+				71C1D84229E4E4E600A7A526 /* LoadingView.swift */,
+				7151AC2929E5C1520002388E /* NavCustomButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -198,6 +212,7 @@
 				718D38BE29DF0EED0055CBC4 /* HomeViewModel.swift */,
 				71A3FDE429DF77A10072EA07 /* SearchViewModel.swift */,
 				718EE04429E1E6AA006FD476 /* SignInViewModel.swift */,
+				7151AC2F29E5CDE30002388E /* ForgotPasswordViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -321,13 +336,17 @@
 				718D38A929DCC6210055CBC4 /* BookCover.swift in Sources */,
 				718D38AD29DCDD4F0055CBC4 /* BookContentView.swift in Sources */,
 				718EE04029E1DA48006FD476 /* NavigationSubtitle.swift in Sources */,
+				71C1D84329E4E4E600A7A526 /* LoadingView.swift in Sources */,
 				718EE03E29E1D422006FD476 /* TextFieldWithTitle.swift in Sources */,
 				715C724529DCA0A7002A8B81 /* PongPongApp.swift in Sources */,
+				7151AC3029E5CDE30002388E /* ForgotPasswordViewModel.swift in Sources */,
+				7151AC2E29E5CC3A0002388E /* SignupWithEmailView.swift in Sources */,
+				7151AC2A29E5C1520002388E /* NavCustomButton.swift in Sources */,
 				718EE03C29E1CA21006FD476 /* SigninView.swift in Sources */,
 				718D38BF29DF0EED0055CBC4 /* HomeViewModel.swift in Sources */,
 				71C1D84129E30A9F00A7A526 /* FontConstants.swift in Sources */,
 				718D38A529DCB3AD0055CBC4 /* CategoryTitle.swift in Sources */,
-				71788A6B29E0DE0900D8883D /* ButtonWithLeadingText.swift in Sources */,
+				71788A6B29E0DE0900D8883D /* NavButtonWithLeadingText.swift in Sources */,
 				71788A6529E0BC6300D8883D /* WelcomeView.swift in Sources */,
 				718D38B729DE4DA70055CBC4 /* FirebaseManager.swift in Sources */,
 				718D38BA29DE4E040055CBC4 /* Book.swift in Sources */,
@@ -342,6 +361,7 @@
 				71A3FDE129DF751B0072EA07 /* TabBarView.swift in Sources */,
 				715C725429DCA10A002A8B81 /* HomeView.swift in Sources */,
 				71788A6329E06F9E00D8883D /* OffsettableScrollView.swift in Sources */,
+				7151AC2C29E5C4670002388E /* ForgotPasswordView.swift in Sources */,
 				718EE04729E1EE7A006FD476 /* SecureTextFieldWIthTitle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

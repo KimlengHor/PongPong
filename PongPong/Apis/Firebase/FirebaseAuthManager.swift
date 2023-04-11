@@ -18,4 +18,12 @@ class FirebaseAuthManager {
             throw error
         }
     }
+    
+    func forgotPassword(email: String) async throws {
+        do {
+            try await FirebaseManager.shared.auth.sendPasswordReset(withEmail: email)
+        } catch {
+            throw error
+        }
+    }
 }

@@ -7,18 +7,18 @@
 
 import SwiftUI
 
-struct ButtonWithLeadingText: View {
+struct NavButtonWithLeadingText<Destination: View>: View {
     let text: String
     let buttonText: String
     let buttonColor: Color
-    let action: () -> Void
+    let destination: Destination
     
     var body: some View {
         HStack {
             Text(text)
                 .font(FontConstants.fifteenMedium)
             
-            Button(action: action) {
+            NavigationLink(destination: destination) {
                 Text(buttonText)
                     .font(FontConstants.fifteenSemi)
                     .foregroundColor(buttonColor)
@@ -27,16 +27,13 @@ struct ButtonWithLeadingText: View {
     }
 }
 
-struct ButtonWithLeadingText_Previews: PreviewProvider {
-    static var previews: some View {
-        ButtonWithLeadingText(
-            text: "Don't have an account",
-            buttonText: "Sign up",
-            buttonColor: Color(.orange),
-            action: {
-                
-            })
-    }
-}
+//struct ButtonWithLeadingText_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ButtonWithLeadingText(
+//            text: "Don't have an account",
+//            buttonText: "Sign up",
+//            buttonColor: Color(.orange),
+//    }
+//}
 
 

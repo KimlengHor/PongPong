@@ -27,6 +27,7 @@ struct FontConstants {
     
     //semi-bold
     static let eighteenSemi = Font.custom(Poppins.semibold.rawValue, size: 18)
+    static let twentyThreeSemi = Font.custom(Poppins.semibold.rawValue, size: 23)
     
     //bold
     static let eighteenBold = Font.custom(Poppins.bold.rawValue, size: 18)

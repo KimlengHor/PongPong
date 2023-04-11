@@ -10,6 +10,7 @@ import SwiftUI
 struct TextFieldWithTitle: View {
     
     let title: String
+    var type: UIKeyboardType = .default
     @Binding var text: String
     
     var body: some View {
@@ -21,6 +22,7 @@ struct TextFieldWithTitle: View {
                 Text("Enter your \(title.lowercased())")
                     .font(FontConstants.fifteenReg)
             }
+            .keyboardType(type)
             .padding(.leading)
             .overlay {
                 RoundedRectangle(cornerRadius: 10)
