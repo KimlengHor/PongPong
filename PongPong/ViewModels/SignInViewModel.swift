@@ -14,12 +14,14 @@ class SigninViewModel: ObservableObject {
     
     @Published var user: User?
     @Published var errorMessage = ""
+    @Published var showingAlert = false
     
     func signInUser(email: String, password: String) async {
         do {
             let result = try await authMananger.signInUser(email: email, password: password)
             user = result?.user
         } catch {
+            showingAlert = true
             errorMessage = error.localizedDescription
         }
     }
