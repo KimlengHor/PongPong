@@ -13,7 +13,7 @@ struct SigninView: View {
     @State var password: String = ""
     @State var showLoadingView: Bool = false
     
-    @ObservedObject var vm = SigninViewModel()
+    @StateObject var vm = SigninViewModel()
     
     var body: some View {
         ZStack {
