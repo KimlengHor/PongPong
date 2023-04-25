@@ -12,7 +12,7 @@ struct ForgotPasswordView: View {
     @State private var emailAddress = ""
     @State private var isLoading = false
     
-    @ObservedObject var vm = ForgotPasswordViewModel()
+    @StateObject var vm = ForgotPasswordViewModel()
     
     var body: some View {
         ZStack {

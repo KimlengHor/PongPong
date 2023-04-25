@@ -10,6 +10,7 @@ import SwiftUI
 struct HomeView: View {
 
     @StateObject private var vm = HomeViewModel()
+    @State var fetchTask: Task<(), Never>?
     
     var body: some View {
         NavigationView {
@@ -43,11 +44,19 @@ struct HomeView: View {
                     Alert(title: Text("Something is wrong"), message: Text(vm.errorMessage), dismissButton: .default(Text("Okay")))
                 }
             }
+            .refreshable {
+                fetchTask = Task {
+                    await vm.refetchBooks()
+                }
+            }
         }
         .task {
             if vm.books.count == 0 {
                 await vm.fetchBooks()
             }
+        }
+        .onDisappear {
+            fetchTask?.cancel()
         }
     }
     

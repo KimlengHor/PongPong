@@ -6,47 +6,85 @@
 //
 
 import SwiftUI
+import AuthenticationServices
+import FirebaseAuth
 
 struct SignupView: View {
+    
+    @State private var isLoading = false
+    @StateObject var vm = SignupViewModel()
+    
+    let appleAuth = AppleAuthentication()
+    
     var body: some View {
-        VStack(alignment: .leading) {
-            NavigationSubtitle(text: "Explore the world of kid books")
-            
-            VStack(spacing: 10) {
-                signUpWithApple
-                signUpWithGoogle
-                signUpWithFacebook
-                signUpWithEmail
+        ZStack {
+            VStack(alignment: .leading) {
+                NavigationSubtitle(text: "Explore the world of kid books")
+                
+                VStack(spacing: 10) {
+                    signUpWithApple
+                    signUpWithGoogle
+                    signUpWithFacebook
+                    signUpWithEmail
+                    
+                    Spacer()
+                    
+                    signInButton
+                }
+                .padding(.top, 20)
                 
                 Spacer()
-                
-                signInButton
             }
-            .padding(.top, 20)
+            .navigationTitle("Sign up")
+            .padding(.vertical)
+            .padding(.horizontal, 24)
+            .alert(isPresented: $vm.showingAlert) {
+                Alert(title: Text("Something is wrong"), message: Text(vm.errorMessage), dismissButton: .default(Text("Okay")))
+            }
             
-            Spacer()
+            if isLoading {
+                LoadingView(text: "Loading")
+            }
         }
-        .navigationTitle("Sign up")
-        .padding(.vertical)
-        .padding(.horizontal, 24)
     }
     
     private var signUpWithApple: some View {
-        CustomButton(action: {},
-                     title: "Continue with Apple",
-                     backgroundColor: Color(cgColor: CGColor(red: 0.02, green: 0.03, blue: 0.03, alpha: 1)),
-                     image: Image("apple"))
+        SignInWithAppleButton(.continue) { request in
+            appleAuth.appleButtonOnRequest(request: request)
+        } onCompletion: { result in
+            Task {
+                await vm.signUpWithApple(currentNonce: appleAuth.currentNonce, result: result)
+            }
+        }
+        .cornerRadius(10)
+        .frame(height: 60)
+//        CustomButton(action: {},
+//                     title: "Continue with Apple",
+//                     backgroundColor: Color(cgColor: CGColor(red: 0.02, green: 0.03, blue: 0.03, alpha: 1)),
+//                     image: Image("apple"))
     }
     
     private var signUpWithGoogle: some View {
-        CustomButton(action: {},
+        CustomButton(action: {
+            Task {
+                isLoading = true
+                await vm.signUpWithGoogle()
+                isLoading = false
+            }
+        },
                      title: "Continue with Google",
                      backgroundColor: Color(cgColor: CGColor(red: 0.87, green: 0.29, blue: 0.22, alpha: 1)),
                      image: Image("google"))
     }
     
     private var signUpWithFacebook: some View {
-        CustomButton(action: {},
+        CustomButton(action: {
+            Task {
+                isLoading = true
+                await vm.signUpWithFacebook()
+                isLoading = false
+            }
+        },
                      title: "Continue with Facebook",
                      backgroundColor: Color(cgColor: CGColor(red: 0.26, green: 0.40, blue: 0.70, alpha: 1)),
                      image: Image("facebook"))

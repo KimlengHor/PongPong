@@ -13,6 +13,8 @@ struct SignupWithEmailView: View {
     @State private var password = ""
     @State private var isLoading = false
     
+    @StateObject var vm = SignupViewModel()
+    
     var body: some View {
         ZStack {
             VStack(alignment: .leading) {
@@ -27,22 +29,22 @@ struct SignupWithEmailView: View {
                 Spacer()
                 
                 CustomButton(action: {
-//                    Task {
-//                        isLoading = true
-//                        await vm.resetPassword(email: emailAddress)
-//                        isLoading = false
-//                    }
+                    Task {
+                        isLoading = true
+                        await vm.signupWithEmail(email: emailAddress, password: password)
+                        isLoading = false
+                    }
                 }, title: "Sign up", backgroundColor: Color.orange)
             }
             .navigationTitle("Sign up")
             .padding(.vertical)
             .padding(.horizontal, 24)
-//            .alert(isPresented: $vm.showingAlert) {
-//                Alert(title: Text("Something is wrong"), message: Text(vm.errorMessage), dismissButton: .default(Text("Okay")))
-//            }
+            .alert(isPresented: $vm.showingAlert) {
+                Alert(title: Text("Something is wrong"), message: Text(vm.errorMessage), dismissButton: .default(Text("Okay")))
+            }
             
             if isLoading {
-                LoadingView(text: "Sending")
+                LoadingView(text: "Signing up")
             }
         }
     }
@@ -51,5 +53,6 @@ struct SignupWithEmailView: View {
 struct SignupWithEmailView_Previews: PreviewProvider {
     static var previews: some View {
         SignupWithEmailView()
+            .environmentObject(SignupViewModel())
     }
 }

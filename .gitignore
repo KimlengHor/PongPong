@@ -1,4 +1,6 @@
 PongPong/GoogleService-Info.plist
+PongPong/Info.plist
+PongPong/PongPong.entitlements
 
 ## User settings
 xcuserdata/

@@ -17,6 +17,13 @@ class HomeViewModel: ObservableObject {
     private var lastDocumentSnapshot: QueryDocumentSnapshot?
     private var isFetchingMore = true
     
+    func refetchBooks() async {
+        books.removeAll()
+        lastDocumentSnapshot = nil
+        
+        await fetchBooks()
+    }
+    
     func fetchBooks() async {
         
         if isFetchingMore == false {
