@@ -10,7 +10,6 @@ import SwiftUI
 struct ForgotPasswordView: View {
     
     @State private var emailAddress = ""
-    @State private var isLoading = false
     
     @StateObject var vm = ForgotPasswordViewModel()
     
@@ -26,9 +25,7 @@ struct ForgotPasswordView: View {
                 
                 CustomButton(action: {
                     Task {
-                        isLoading = true
                         await vm.resetPassword(email: emailAddress)
-                        isLoading = false
                     }
                 }, title: "Reset password", backgroundColor: Color.orange)
             }
@@ -39,7 +36,7 @@ struct ForgotPasswordView: View {
                 Alert(title: Text("Something is wrong"), message: Text(vm.errorMessage), dismissButton: .default(Text("Okay")))
             }
             
-            if isLoading {
+            if vm.isLoading {
                 LoadingView(text: "Sending")
             }
         }

@@ -13,9 +13,11 @@ class HomeViewModel: ObservableObject {
     @Published var books = [Book]()
     @Published var showingAlert = false
     @Published var errorMessage = ""
+    @Published var isLoading = false
+    @Published var isFetchingMore = true
      
     private var lastDocumentSnapshot: QueryDocumentSnapshot?
-    private var isFetchingMore = true
+    private let limit = 3
     
     func refetchBooks() async {
         books.removeAll()
@@ -25,6 +27,8 @@ class HomeViewModel: ObservableObject {
     }
     
     func fetchBooks() async {
+        
+        isLoading = true
         
         if isFetchingMore == false {
             return
@@ -38,12 +42,12 @@ class HomeViewModel: ObservableObject {
             if let lastDocumentSnapshot = lastDocumentSnapshot {
                 documents = try await bookCollection
                     .start(afterDocument: lastDocumentSnapshot)
-                    .limit(to: 5)
+                    .limit(to: limit)
                     .getDocuments()
                     .documents
             } else {
                 documents = try await bookCollection
-                    .limit(to: 5)
+                    .limit(to: limit)
                     .getDocuments()
                     .documents
             }
@@ -68,5 +72,7 @@ class HomeViewModel: ObservableObject {
             showingAlert = true
             errorMessage = error.localizedDescription
         }
+        
+        isLoading = false
     }
 }

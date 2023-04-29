@@ -14,39 +14,50 @@ struct HomeView: View {
     
     var body: some View {
         NavigationView {
-            ScrollView(showsIndicators: false) {
-                VStack(spacing: 15) {
-                    
-                    Divider()
-                    
-                    VStack(alignment: .leading) {
-                        CategoryTitle(text: "Recent Books")
-                        recentBookList
-                            .frame(height: 255)
-                            .padding(.top, 5)
+            ZStack {
+                ScrollView(showsIndicators: false) {
+                    VStack(spacing: 15) {
+                        
+                        Divider()
+                        
+                        VStack(alignment: .leading) {
+                            CategoryTitle(text: "Recent Books")
+                            recentBookList
+                                .frame(height: 255)
+                                .padding(.top, 5)
+                        }
+                        .padding(.top)
+                                            
+                        Divider()
+                        
+                        VStack(alignment: .leading) {
+                            CategoryTitle(text: "All Books")
+                            VerticalBookList(books: vm.books)
+                                .padding(.top, 5)
+                        }
+                        .padding(.top)
+                        
+                        if vm.isFetchingMore {
+                            moreButton
+                                .padding(.top)
+                        }
+                        
+                        Spacer()
                     }
-                    .padding(.top)
-                                        
-                    Divider()
-                    
-                    VStack(alignment: .leading) {
-                        CategoryTitle(text: "All Books")
-                        VerticalBookList(books: vm.books)
-                            .padding(.top, 5)
+                    .navigationTitle("Explore")
+                    .padding()
+                    .alert(isPresented: $vm.showingAlert) {
+                        Alert(title: Text("Something is wrong"), message: Text(vm.errorMessage), dismissButton: .default(Text("Okay")))
                     }
-                    .padding(.top)
-                    
-                    Spacer()
                 }
-                .navigationTitle("Explore")
-                .padding()
-                .alert(isPresented: $vm.showingAlert) {
-                    Alert(title: Text("Something is wrong"), message: Text(vm.errorMessage), dismissButton: .default(Text("Okay")))
+                .refreshable {
+                    fetchTask = Task {
+                        await vm.refetchBooks()
+                    }
                 }
-            }
-            .refreshable {
-                fetchTask = Task {
-                    await vm.refetchBooks()
+                
+                if vm.isLoading {
+                    LoadingView()
                 }
             }
         }
@@ -58,6 +69,14 @@ struct HomeView: View {
         .onDisappear {
             fetchTask?.cancel()
         }
+    }
+    
+    private var moreButton: some View {
+        CustomButton(action: {
+            fetchTask = Task {
+                await vm.fetchBooks()
+            }
+        }, title: "More books", backgroundColor: .orange)
     }
     
     private var recentBookList: some View {
