@@ -11,7 +11,6 @@ import FirebaseAuth
 
 struct SignupView: View {
     
-    @State private var isLoading = false
     @StateObject var vm = SignupViewModel()
     
     let appleAuth = AppleAuthentication()
@@ -42,7 +41,7 @@ struct SignupView: View {
                 Alert(title: Text("Something is wrong"), message: Text(vm.errorMessage), dismissButton: .default(Text("Okay")))
             }
             
-            if isLoading {
+            if vm.isLoading {
                 LoadingView(text: "Loading")
             }
         }
@@ -56,8 +55,9 @@ struct SignupView: View {
                 await vm.signUpWithApple(currentNonce: appleAuth.currentNonce, result: result)
             }
         }
-        .cornerRadius(10)
-        .frame(height: 60)
+        .frame(height: 56)
+        
+        
 //        CustomButton(action: {},
 //                     title: "Continue with Apple",
 //                     backgroundColor: Color(cgColor: CGColor(red: 0.02, green: 0.03, blue: 0.03, alpha: 1)),
@@ -67,9 +67,7 @@ struct SignupView: View {
     private var signUpWithGoogle: some View {
         CustomButton(action: {
             Task {
-                isLoading = true
                 await vm.signUpWithGoogle()
-                isLoading = false
             }
         },
                      title: "Continue with Google",
@@ -80,9 +78,7 @@ struct SignupView: View {
     private var signUpWithFacebook: some View {
         CustomButton(action: {
             Task {
-                isLoading = true
                 await vm.signUpWithFacebook()
-                isLoading = false
             }
         },
                      title: "Continue with Facebook",

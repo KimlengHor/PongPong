@@ -47,7 +47,7 @@ struct ButtonBodyView: View {
             }
             Text(title)
                 .font(FontConstants.fifteenMedium)
-                .frame(height: 60)
+                .frame(height: 56)
                 .frame(maxWidth: .infinity)
         }
         .background(backgroundColor)

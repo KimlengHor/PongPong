@@ -10,21 +10,32 @@ import Firebase
 
 @MainActor
 class SearchViewModel: ObservableObject {
-    @Published var books = [Book]()
+    @Published var books: [Book]?
     @Published var showingAlert = false
     @Published var errorMessage = ""
+    @Published var isLoading = false
+    @Published var lastDocumentSnapshot: QueryDocumentSnapshot?
     
-    private var lastDocumentSnapshot: QueryDocumentSnapshot?
     private var isFetchingMore = true
     
+    func searchBooksAgain(searchText: String) async {
+        books?.removeAll()
+        await searchBooks(searchText: searchText)
+    }
+    
     func searchBooks(searchText: String) async {
+        
+        if books == nil {
+            books = [Book]()
+        }
+        
+        isLoading = true
         
         if isFetchingMore == false {
             return
         }
         
         do {
-            
             let bookCollection = FirebaseManager.shared.firestore
                 .collection(FirebaseConstants.bookCollection)
             var documents = [QueryDocumentSnapshot]()
@@ -46,12 +57,10 @@ class SearchViewModel: ObservableObject {
                     .documents
             }
             
-            books.removeAll()
-            
             documents.forEach { snapshot in
                 do {
                     let book = try snapshot.data(as: Book.self)
-                    books.append(book)
+                    books?.append(book)
                 } catch {
                     showingAlert = true
                     errorMessage = error.localizedDescription
@@ -62,5 +71,7 @@ class SearchViewModel: ObservableObject {
             showingAlert = true
             errorMessage = error.localizedDescription
         }
+        
+        isLoading = false
     }
 }

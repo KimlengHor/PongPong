@@ -26,13 +26,17 @@ struct PongPongApp: App {
     
     var body: some Scene {
         WindowGroup {
-            WelcomeView().onOpenURL { (url) in
-                guard let urlScheme = url.scheme else { return }
-                if urlScheme.hasPrefix("fb") {
-                    ApplicationDelegate.shared.application(UIApplication.shared,
-                                                           open: url,
-                                                           sourceApplication: nil,
-                                                           annotation: UIApplication.OpenURLOptionsKey.annotation) }
+            if FirebaseManager.shared.auth.currentUser != nil {
+                TabBarView()
+            } else {
+                WelcomeView().onOpenURL { (url) in
+                    guard let urlScheme = url.scheme else { return }
+                    if urlScheme.hasPrefix("fb") {
+                        ApplicationDelegate.shared.application(UIApplication.shared,
+                                                               open: url,
+                                                               sourceApplication: nil,
+                                                               annotation: UIApplication.OpenURLOptionsKey.annotation) }
+                }
             }
         }
     }

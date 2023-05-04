@@ -9,6 +9,11 @@ import SwiftUI
 
 struct SearchView: View {
     
+    enum Field: Hashable {
+        case searchText
+    }
+    @FocusState private var focusedField: Field?
+    
     @State var searchTask: Task<(), Never>?
     @State private var searchText: String = ""
     
@@ -16,27 +21,43 @@ struct SearchView: View {
     
     var body: some View {
         NavigationView {
-            ScrollView(showsIndicators: false) {
-                VStack(spacing: 20) {
-                    searchTextFiled
-                        .onDisappear {
-                            searchTask?.cancel()
+            ZStack {
+                ScrollView(showsIndicators: false) {
+                    VStack(spacing: 20) {
+                        searchTextFiled
+                            .onDisappear {
+                                searchTask?.cancel()
+                            }
+                            .focused($focusedField, equals: .searchText)
+                        
+                        Divider()
+                        
+                        if let books = vm.books {
+                            if books.isEmpty {
+                                CategoryTitle(text: "No results")
+                                    .padding(.top)
+                            } else {
+                                VStack(alignment: .leading) {
+                                    CategoryTitle(text: "Results")
+                                    VerticalBookList(books: books)
+                                        .padding(.top, 7)
+                                }.padding(.top)
+                            }
                         }
-                    
-                    Divider()
-                    
-                    VStack(alignment: .leading) {
-                        CategoryTitle(text: "Results")
-                        VerticalBookList(books: vm.books)
-                            .padding(.top, 7)
+                        
+                        Spacer()
                     }
-                    .padding(.top)
-                    
-                    Spacer()
+                    .padding()
+                    .navigationTitle("Search")
                 }
-                .padding()
-                .navigationTitle("Search")
+                
+                if vm.isLoading {
+                    LoadingView()
+                }
             }
+        }
+        .onAppear {
+            focusedField = .searchText
         }
     }
     
@@ -51,7 +72,7 @@ struct SearchView: View {
             .submitLabel(.search)
             .onSubmit {
                 searchTask = Task {
-                    await vm.searchBooks(searchText: searchText)
+                    await vm.searchBooksAgain(searchText: searchText)
                 }
             }
         }

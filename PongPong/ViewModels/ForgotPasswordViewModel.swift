@@ -15,13 +15,18 @@ class ForgotPasswordViewModel: ObservableObject {
     
     @Published var errorMessage = ""
     @Published var showingAlert = false
+    @Published var isLoading = false
     
     func resetPassword(email: String) async {
+        isLoading = true
+        
         do {
             try await authMananger.forgotPassword(email: email)
         } catch {
             showingAlert = true
             errorMessage = error.localizedDescription
         }
+        
+        isLoading = false
     }
 }

@@ -6,14 +6,18 @@
 //
 
 import SwiftUI
+import AuthenticationServices
+import FirebaseAuth
 
 struct SigninView: View {
     
     @State var emailAddress: String = ""
     @State var password: String = ""
-    @State var showLoadingView: Bool = false
+    @State var shouldPresentTabBarView = false
     
     @StateObject var vm = SigninViewModel()
+    
+    let appleAuth = AppleAuthentication()
     
     var body: some View {
         ZStack {
@@ -64,18 +68,26 @@ struct SigninView: View {
                 Alert(title: Text("Something is wrong"), message: Text(vm.errorMessage), dismissButton: .default(Text("Okay")))
             }
             
-            if showLoadingView {
+            if vm.isLoading {
                 LoadingView(text: "Signing in")
             }
+        }
+        .fullScreenCover(isPresented: $shouldPresentTabBarView) {
+            TabBarView()
+        }
+    }
+    
+    private func goToTabBarView() {
+        if vm.user != nil {
+            shouldPresentTabBarView = true
         }
     }
     
     private var loginButton: some View {
         CustomButton(action: {
             Task {
-                showLoadingView = true
                 await vm.signInUser(email: emailAddress, password: password)
-                showLoadingView = false
+                goToTabBarView()
             }
         }, title: "Login", backgroundColor: .orange)
     }
@@ -89,21 +101,41 @@ struct SigninView: View {
     }
     
     private var signInWithApple: some View {
-        CustomButton(action: {},
-                     title: "Continue with Apple",
-                     backgroundColor: Color(cgColor: CGColor(red: 0.02, green: 0.03, blue: 0.03, alpha: 1)),
-                     image: Image("apple"))
+        SignInWithAppleButton(.continue) { request in
+            appleAuth.appleButtonOnRequest(request: request)
+        } onCompletion: { result in
+            Task {
+                await vm.signInWithApple(currentNonce: appleAuth.currentNonce, result: result)
+                goToTabBarView()
+            }
+        }
+        .cornerRadius(10)
+        .frame(height: 60)
+//        CustomButton(action: {},
+//                     title: "Continue with Apple",
+//                     backgroundColor: Color(cgColor: CGColor(red: 0.02, green: 0.03, blue: 0.03, alpha: 1)),
+//                     image: Image("apple"))
     }
     
     private var signInWithGoogle: some View {
-        CustomButton(action: {},
+        CustomButton(action: {
+            Task {
+                await vm.signInWithGoogle()
+                goToTabBarView()
+            }
+        },
                      title: "Continue with Google",
                      backgroundColor: Color(cgColor: CGColor(red: 0.87, green: 0.29, blue: 0.22, alpha: 1)),
                      image: Image("google"))
     }
     
     private var signInWithFacebook: some View {
-        CustomButton(action: {},
+        CustomButton(action: {
+            Task {
+                await vm.signInWithFacebook()
+                goToTabBarView()
+            }
+        },
                      title: "Continue with Facebook",
                      backgroundColor: Color(cgColor: CGColor(red: 0.26, green: 0.40, blue: 0.70, alpha: 1)),
                      image: Image("facebook"))
