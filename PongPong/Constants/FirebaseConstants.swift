@@ -10,4 +10,5 @@ import Foundation
 struct FirebaseConstants {
     static let bookCollection = "books"
     static let titleField = "title"
+    static let favCollection = "favorites"
 }

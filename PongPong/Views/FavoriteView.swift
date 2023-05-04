@@ -43,9 +43,9 @@ struct FavoriteView: View {
                         }
                         .padding(.top)
                     }
+                    .padding()
                 }
                 .navigationTitle("Favorite")
-                .padding()
                 .toolbar {
                     ToolbarItemGroup(placement: .navigationBarTrailing) {
                         menuItem

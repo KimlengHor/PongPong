@@ -21,6 +21,8 @@
 		716A28D229F6D8F500782102 /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = 716A28D129F6D8F500782102 /* FacebookCore */; };
 		716A28D429F6D8F500782102 /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 716A28D329F6D8F500782102 /* FacebookLogin */; };
 		716A28D729F7220C00782102 /* FacebookAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716A28D629F7220C00782102 /* FacebookAuthentication.swift */; };
+		716D72E62A0455AC008C90E8 /* BookManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716D72E52A0455AC008C90E8 /* BookManager.swift */; };
+		716D72E82A045A51008C90E8 /* BookContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716D72E72A045A51008C90E8 /* BookContentViewModel.swift */; };
 		71788A6329E06F9E00D8883D /* OffsettableScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71788A6229E06F9E00D8883D /* OffsettableScrollView.swift */; };
 		71788A6529E0BC6300D8883D /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71788A6429E0BC6300D8883D /* WelcomeView.swift */; };
 		71788A6729E0C6BB00D8883D /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71788A6629E0C6BB00D8883D /* SignupView.swift */; };
@@ -75,6 +77,8 @@
 		715C725329DCA10A002A8B81 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		716A28D529F6DF9D00782102 /* PongPong.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PongPong.entitlements; sourceTree = "<group>"; };
 		716A28D629F7220C00782102 /* FacebookAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookAuthentication.swift; sourceTree = "<group>"; };
+		716D72E52A0455AC008C90E8 /* BookManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookManager.swift; sourceTree = "<group>"; };
+		716D72E72A045A51008C90E8 /* BookContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookContentViewModel.swift; sourceTree = "<group>"; };
 		71788A6229E06F9E00D8883D /* OffsettableScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffsettableScrollView.swift; sourceTree = "<group>"; };
 		71788A6429E0BC6300D8883D /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		71788A6629E0C6BB00D8883D /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
@@ -215,6 +219,7 @@
 				718EE04129E1DE6A006FD476 /* Firebase */,
 				716A28D629F7220C00782102 /* FacebookAuthentication.swift */,
 				7136DDF529F81D24000B472A /* AppleAuthentication.swift */,
+				716D72E52A0455AC008C90E8 /* BookManager.swift */,
 			);
 			path = Apis;
 			sourceTree = "<group>";
@@ -236,6 +241,7 @@
 				7151AC2F29E5CDE30002388E /* ForgotPasswordViewModel.swift */,
 				7152A91E29E85566001D9518 /* SignupViewModel.swift */,
 				713291872A03FA1400483F8D /* FavoriteViewModel.swift */,
+				716D72E72A045A51008C90E8 /* BookContentViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -368,6 +374,7 @@
 				718EE03E29E1D422006FD476 /* TextFieldWithTitle.swift in Sources */,
 				715C724529DCA0A7002A8B81 /* PongPongApp.swift in Sources */,
 				7151AC3029E5CDE30002388E /* ForgotPasswordViewModel.swift in Sources */,
+				716D72E82A045A51008C90E8 /* BookContentViewModel.swift in Sources */,
 				7151AC2E29E5CC3A0002388E /* SignupWithEmailView.swift in Sources */,
 				7151AC2A29E5C1520002388E /* NavCustomButton.swift in Sources */,
 				718EE03C29E1CA21006FD476 /* SigninView.swift in Sources */,
@@ -379,6 +386,7 @@
 				718D38B729DE4DA70055CBC4 /* FirebaseManager.swift in Sources */,
 				718D38BA29DE4E040055CBC4 /* Book.swift in Sources */,
 				718EE04529E1E6AA006FD476 /* SigninViewModel.swift in Sources */,
+				716D72E62A0455AC008C90E8 /* BookManager.swift in Sources */,
 				718D38AB29DCD0F30055CBC4 /* RatingView.swift in Sources */,
 				71A3FDE529DF77A10072EA07 /* SearchViewModel.swift in Sources */,
 				713291882A03FA1400483F8D /* FavoriteViewModel.swift in Sources */,

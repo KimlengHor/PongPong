@@ -10,20 +10,30 @@ import SDWebImageSwiftUI
 
 struct BookContentView: View {
     
-    let bookContents: [String]?
+    let book: Book?
     
     @Environment(\.presentationMode) var presentationMode
     @State private var hideNavigationBar = true
     
+    @StateObject private var vm = BookContentViewModel()
+    
     var body: some View {
         
         NavigationView {
-            ZStack(alignment: .top) {
+            ZStack() {
                 
                 contentTabView
                 
                 if !hideNavigationBar {
-                    topNavBarView
+                    VStack {
+                        topNavBarView
+                        Spacer()
+                        bottomNavBarView
+                    }
+                }
+                
+                if vm.isLoading {
+                    LoadingView()
                 }
             }
         }
@@ -32,7 +42,7 @@ struct BookContentView: View {
     
     private var contentTabView: some View {
         TabView {
-            ForEach(bookContents ?? [], id: \.self) { content in
+            ForEach(book?.contents ?? [], id: \.self) { content in
                 WebImage(url: URL(string: content))
                     .resizable()
                     .aspectRatio(contentMode: .fit)
@@ -57,6 +67,28 @@ struct BookContentView: View {
                 Image(systemName: "xmark.circle.fill")
                     .foregroundColor(.white)
                     .font(.title)
+            }
+            .padding()
+        }
+        .background(Color.black.opacity(0.5))
+    }
+    
+    private var bottomNavBarView: some View {
+        HStack {
+            Spacer()
+            
+            Button {
+                Task {
+                    await vm.addBookToFavorites(bookId: book?.id)
+                }
+            } label: {
+                HStack {
+                    Image(systemName: "star.fill")
+                        .foregroundColor(.white)
+                        .font(.title)
+                    Text("Add to favorites")
+                }
+                .foregroundColor(.white)
             }
             .padding()
         }

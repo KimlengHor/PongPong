@@ -28,8 +28,6 @@ class FavoriteViewModel: ObservableObject {
     func deleteAccount() async {
         isLoading = true
         
-        print(Auth.auth().currentUser?.email)
-        
         do {
             try await authMananger.deleteAcount()
         } catch {
