@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		713291882A03FA1400483F8D /* FavoriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713291872A03FA1400483F8D /* FavoriteViewModel.swift */; };
 		7136DDF629F81D24000B472A /* AppleAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7136DDF529F81D24000B472A /* AppleAuthentication.swift */; };
 		7151AC2A29E5C1520002388E /* NavCustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7151AC2929E5C1520002388E /* NavCustomButton.swift */; };
 		7151AC2C29E5C4670002388E /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7151AC2B29E5C4670002388E /* ForgotPasswordView.swift */; };
@@ -60,6 +61,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		713291872A03FA1400483F8D /* FavoriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewModel.swift; sourceTree = "<group>"; };
 		7136DDF529F81D24000B472A /* AppleAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleAuthentication.swift; sourceTree = "<group>"; };
 		7151AC2929E5C1520002388E /* NavCustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavCustomButton.swift; sourceTree = "<group>"; };
 		7151AC2B29E5C4670002388E /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 				718EE04429E1E6AA006FD476 /* SigninViewModel.swift */,
 				7151AC2F29E5CDE30002388E /* ForgotPasswordViewModel.swift */,
 				7152A91E29E85566001D9518 /* SignupViewModel.swift */,
+				713291872A03FA1400483F8D /* FavoriteViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -378,6 +381,7 @@
 				718EE04529E1E6AA006FD476 /* SigninViewModel.swift in Sources */,
 				718D38AB29DCD0F30055CBC4 /* RatingView.swift in Sources */,
 				71A3FDE529DF77A10072EA07 /* SearchViewModel.swift in Sources */,
+				713291882A03FA1400483F8D /* FavoriteViewModel.swift in Sources */,
 				71A3FDE329DF76780072EA07 /* SearchView.swift in Sources */,
 				718D38A729DCB4F60055CBC4 /* ContentTitle.swift in Sources */,
 				718EE04329E1E062006FD476 /* FirebaseAuthManager.swift in Sources */,
@@ -532,6 +536,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -565,6 +570,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -105,4 +105,20 @@ class FirebaseAuthManager {
             throw error
         }
     }
+    
+    func signOutUser() throws {
+        do {
+            try FirebaseManager.shared.auth.signOut()
+        } catch {
+            throw error
+        }
+    }
+    
+    func deleteAcount() async throws {
+        do {
+            try await FirebaseManager.shared.auth.currentUser?.delete()
+        } catch {
+            throw error
+        }
+    }
 }
