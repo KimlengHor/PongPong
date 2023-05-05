@@ -35,6 +35,11 @@ struct BookContentView: View {
                 if vm.isLoading {
                     LoadingView()
                 }
+                
+                if vm.showFeedbackView {
+                    FeedbackView(text: "Added to favorites", imageName: "star.fill")
+                        .transition(.fade(duration: 0.2))
+                }
             }
         }
         .navigationBarBackButtonHidden(true)
@@ -79,7 +84,12 @@ struct BookContentView: View {
             
             Button {
                 Task {
-                    await vm.addBookToFavorites(bookId: book?.id)
+                    await vm.addBookToFavorites(book: book)
+                    if book?.isFavorite == true {
+                        print("Noice")
+                    } else {
+                        print("Meh")
+                    }
                 }
             } label: {
                 HStack {
