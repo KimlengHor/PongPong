@@ -12,10 +12,12 @@ struct VerticalBookList: View {
     
     let books: [Book]
     @State private var showBookContentView = false
+    @State private var selectedBook: Book?
     
     var body: some View {
         ForEach(books) { book in
             Button {
+                selectedBook = book
                 showBookContentView.toggle()
             } label: {
                 HStack(spacing: 20) {
@@ -37,10 +39,8 @@ struct VerticalBookList: View {
                 }
             }
             .foregroundColor(Color(.label))
-            .fullScreenCover(isPresented: $showBookContentView, content: {
-                BookContentView(bookContents: book.contents)
-            })
         }
+        .fullScreenCover(item: $selectedBook) { BookContentView(book: $0) }
     }
 }
 

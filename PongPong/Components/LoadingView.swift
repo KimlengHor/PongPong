@@ -14,12 +14,8 @@ struct LoadingView: View {
     var body: some View {
         ProgressView() {
             Text(text)
-                .font(FontConstants.fifteenReg)
         }
-        .padding()
-        .background(Color.white)
-        .cornerRadius(10)
-        .shadow(color: Color.gray.opacity(0.5), radius: 3, x: 3, y: 2)
+        .withSmallMiddleViewFomatting()
     }
 }
 

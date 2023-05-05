@@ -83,14 +83,14 @@ struct HomeView: View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 20) {
                 ForEach(1...10, id: \.self) {_ in
-                    NavigationLink(destination: BookContentView(bookContents: [])) {
+//                    NavigationLink(destination: BookContentView()) {
                         VStack(alignment: .leading, spacing: 5) {
                             BookCover(content: Image("cover").resizable())
                             ContentTitle(text: "Pong Pong")
                             RatingView(rating: "5.0")
                         }
                         .foregroundColor(Color(.label))
-                    }
+//                    }
                 }
             }
         }
