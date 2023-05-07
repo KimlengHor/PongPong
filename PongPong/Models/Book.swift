@@ -8,7 +8,7 @@
 import Foundation
 import FirebaseFirestoreSwift
 
-class Book: Codable, Identifiable {
+struct Book: Codable, Identifiable {
     
     @DocumentID var id: String?
     
@@ -18,14 +18,9 @@ class Book: Codable, Identifiable {
     let description: String?
     let rating: Float?
     let timestamp: Date?
-    private(set) var isFavorite: Bool?
     
     func capitalizedTitle() -> String? {
         return title?.capitalized
-    }
-    
-    func setFavorite(_ favorite: Bool) {
-        self.isFavorite = favorite
     }
 }
 

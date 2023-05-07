@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct FavoriteView: View {
     
@@ -52,16 +53,7 @@ struct FavoriteView: View {
                     }
                 }
                 .confirmationDialog(title, isPresented: $showConfirmationDialog) {
-                    Button(title, role: .destructive) {
-                        if profileOption == .delete {
-                            Task {
-                                await vm.deleteAccount()
-                            }
-                        } else {
-                            vm.signOutUser()
-                        }
-                    }
-                    Button("Cancel", role: .cancel) {}
+                    confirmationButtons
                 } message: {
                     Text(message)
                 }
@@ -70,16 +62,37 @@ struct FavoriteView: View {
                     LoadingView()
                 }
             }
+            .task {
+                if vm.books.count == 0 {
+                    await vm.fetchFavoriteBooks()
+                }
+            }
+        }
+    }
+    
+    private var confirmationButtons: some View {
+        VStack {
+            Button(title, role: .destructive) {
+                if profileOption == .delete {
+                    Task {
+                        await vm.deleteAccount()
+                    }
+                } else {
+                    vm.signOutUser()
+                }
+            }
+            Button("Cancel", role: .cancel) {}
         }
     }
     
     private var booksGridView: some View {
         LazyVGrid(columns: columns, spacing: 30) {
-            ForEach(items, id: \.self) { item in
+            ForEach(vm.books) { book in
                 VStack(alignment: .leading, spacing: 5) {
-                    BookCover(content: Image("cover").resizable())
-                    ContentTitle(text: "Pong Pong")
-                    RatingView(rating: "5.0")
+                    BookCover(content: WebImage(url: URL(string: book.cover ?? ""))
+                        .resizable())
+                    ContentTitle(text: book.title?.capitalized ?? "")
+                    RatingView(rating: String(book.rating ?? 0))
                 }
                 .foregroundColor(Color(.label))
             }

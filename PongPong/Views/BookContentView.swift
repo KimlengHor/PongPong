@@ -43,9 +43,7 @@ struct BookContentView: View {
         }
         .navigationBarBackButtonHidden(true)
         .task {
-            if book?.isFavorite == nil {
-                await vm.checkIfBookInFavorites(book: book)
-            }
+            await vm.checkIfBookInFavorites(book: book)
         }
     }
     
@@ -88,23 +86,19 @@ struct BookContentView: View {
             
             Button {
                 Task {
-                    if book?.isFavorite == true {
-                        await vm.removeBookFromFavorites(book: book)
+                    if vm.isBookFavorite == true {
+                        await vm.removeBookFromFavorites(bookId: book?.id)
                     } else {
-                        await vm.addBookToFavorites(book: book)
+                        await vm.addBookToFavorites(bookId: book?.id)
                     }
                     hideNavigationBar = true
                 }
             } label: {
                 HStack {
-                    Image(systemName: book?.isFavorite == true
-                          ? "star.slash.fill"
-                          : "star.fill")
+                    Image(systemName: vm.favButtonImageName)
                         .foregroundColor(.white)
                         .font(.title)
-                    Text(book?.isFavorite == true
-                         ? "Remove from favorites"
-                         : "Add to favorites")
+                    Text(vm.favButtonText)
                 }
                 .foregroundColor(.white)
             }
@@ -114,8 +108,8 @@ struct BookContentView: View {
     }
     
     private var feedbackView: some View {
-        FeedbackView(text: book?.isFavorite == true ? "Added to favorites" : "Removed from favorites",
-                     imageName: book?.isFavorite == true ? "star.fill" : "star.slash.fill")
+        FeedbackView(text: vm.feedbackText,
+                     imageName: vm.feedbackImageName)
             .transition(.fade(duration: 0.2))
     }
 }

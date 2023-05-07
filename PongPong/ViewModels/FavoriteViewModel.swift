@@ -11,10 +11,13 @@ import Firebase
 @MainActor
 class FavoriteViewModel: ObservableObject {
     let authMananger = FirebaseAuthManager()
+    let bookMananger = BookManager()
     
     @Published var errorMessage = ""
     @Published var showingAlert = false
     @Published var isLoading = false
+    
+    @Published var books = [Book]()
     
     func signOutUser() {
         do {
@@ -30,6 +33,19 @@ class FavoriteViewModel: ObservableObject {
         
         do {
             try await authMananger.deleteAcount()
+        } catch {
+            showingAlert = true
+            errorMessage = error.localizedDescription
+        }
+        
+        isLoading = false
+    }
+    
+    func fetchFavoriteBooks() async {
+        isLoading = true
+        
+        do {
+            books = try await bookMananger.fetchFavoriteBooks()
         } catch {
             showingAlert = true
             errorMessage = error.localizedDescription
