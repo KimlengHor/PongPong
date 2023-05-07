@@ -37,12 +37,16 @@ struct BookContentView: View {
                 }
                 
                 if vm.showFeedbackView {
-                    FeedbackView(text: "Added to favorites", imageName: "star.fill")
-                        .transition(.fade(duration: 0.2))
+                    feedbackView
                 }
             }
         }
         .navigationBarBackButtonHidden(true)
+        .task {
+            if book?.isFavorite == nil {
+                await vm.checkIfBookInFavorites(book: book)
+            }
+        }
     }
     
     private var contentTabView: some View {
@@ -84,25 +88,35 @@ struct BookContentView: View {
             
             Button {
                 Task {
-                    await vm.addBookToFavorites(book: book)
                     if book?.isFavorite == true {
-                        print("Noice")
+                        await vm.removeBookFromFavorites(book: book)
                     } else {
-                        print("Meh")
+                        await vm.addBookToFavorites(book: book)
                     }
+                    hideNavigationBar = true
                 }
             } label: {
                 HStack {
-                    Image(systemName: "star.fill")
+                    Image(systemName: book?.isFavorite == true
+                          ? "star.slash.fill"
+                          : "star.fill")
                         .foregroundColor(.white)
                         .font(.title)
-                    Text("Add to favorites")
+                    Text(book?.isFavorite == true
+                         ? "Remove from favorites"
+                         : "Add to favorites")
                 }
                 .foregroundColor(.white)
             }
             .padding()
         }
         .background(Color.black.opacity(0.5))
+    }
+    
+    private var feedbackView: some View {
+        FeedbackView(text: book?.isFavorite == true ? "Added to favorites" : "Removed from favorites",
+                     imageName: book?.isFavorite == true ? "star.fill" : "star.slash.fill")
+            .transition(.fade(duration: 0.2))
     }
 }
 
