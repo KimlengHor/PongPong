@@ -14,11 +14,12 @@ struct BookContentView: View {
     
     @Environment(\.presentationMode) var presentationMode
     @State private var hideNavigationBar = true
+    @State private var page = 0
+    @State var addProgressTask: Task<(), Never>?
     
     @StateObject private var vm = BookContentViewModel()
     
     var body: some View {
-        
         NavigationView {
             ZStack() {
                 
@@ -43,27 +44,39 @@ struct BookContentView: View {
         }
         .navigationBarBackButtonHidden(true)
         .task {
-            if book?.isFavorite == nil {
-                await vm.checkIfBookInFavorites(book: book)
-            }
+            await vm.checkIfBookInFavorites(book: book)
+        }
+        .onDisappear {
+            addProgressTask?.cancel()
         }
     }
     
     private var contentTabView: some View {
-        TabView {
-            ForEach(book?.contents ?? [], id: \.self) { content in
-                WebImage(url: URL(string: content))
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .onTapGesture {
-                        hideNavigationBar.toggle()
-                    }
+        TabView(selection: $page) {
+            if let contents = book?.contents {
+                ForEach(Array(contents.enumerated()), id: \.offset) { index, content in
+                    WebImage(url: URL(string: content))
+                        .resizable()
+                        .tag(index)
+                        .aspectRatio(contentMode: .fit)
+                        .onTapGesture {
+                            hideNavigationBar.toggle()
+                        }
+                }
             }
         }
         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
         .frame(maxWidth: .infinity)
         .frame(maxHeight: .infinity)
         .indexViewStyle(.page(backgroundDisplayMode: .always))
+        .onChange(of: page) { value in
+            
+            addProgressTask?.cancel()
+            
+            addProgressTask = Task {
+                await vm.addBookToRecent(book: book, page: page)
+            }
+        }
     }
     
     private var topNavBarView: some View {
@@ -88,23 +101,19 @@ struct BookContentView: View {
             
             Button {
                 Task {
-                    if book?.isFavorite == true {
-                        await vm.removeBookFromFavorites(book: book)
+                    if vm.isBookFavorite == true {
+                        await vm.removeBookFromFavorites(bookId: book?.id)
                     } else {
-                        await vm.addBookToFavorites(book: book)
+                        await vm.addBookToFavorites(bookId: book?.id)
                     }
                     hideNavigationBar = true
                 }
             } label: {
                 HStack {
-                    Image(systemName: book?.isFavorite == true
-                          ? "star.slash.fill"
-                          : "star.fill")
+                    Image(systemName: vm.favButtonImageName)
                         .foregroundColor(.white)
                         .font(.title)
-                    Text(book?.isFavorite == true
-                         ? "Remove from favorites"
-                         : "Add to favorites")
+                    Text(vm.favButtonText)
                 }
                 .foregroundColor(.white)
             }
@@ -114,8 +123,8 @@ struct BookContentView: View {
     }
     
     private var feedbackView: some View {
-        FeedbackView(text: book?.isFavorite == true ? "Added to favorites" : "Removed from favorites",
-                     imageName: book?.isFavorite == true ? "star.fill" : "star.slash.fill")
+        FeedbackView(text: vm.feedbackText,
+                     imageName: vm.feedbackImageName)
             .transition(.fade(duration: 0.2))
     }
 }

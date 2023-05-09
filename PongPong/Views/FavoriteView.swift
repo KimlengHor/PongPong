@@ -20,8 +20,6 @@ struct FavoriteView: View {
     }
     
     @State private var profileOption = ProfileOption.logout
-    
-    let items = ["Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6", "Item 7", "Item 8", "Item 9"]
 
     let columns: [GridItem] = [
         GridItem(.flexible(), spacing: 15),
@@ -30,58 +28,65 @@ struct FavoriteView: View {
     
     var body: some View {
         NavigationView {
-            ZStack {
-                ScrollView(showsIndicators: false) {
-                    VStack(spacing: 15) {
-                        
-                        Divider()
-                        
-                        VStack(alignment: .leading) {
-                            CategoryTitle(text: "All your favorite books")
-                            booksGridView
-                                .padding(.top, 5)
-                        }
-                        .padding(.top)
-                    }
-                    .padding()
-                }
-                .navigationTitle("Favorite")
-                .toolbar {
-                    ToolbarItemGroup(placement: .navigationBarTrailing) {
-                        menuItem
-                    }
-                }
-                .confirmationDialog(title, isPresented: $showConfirmationDialog) {
-                    Button(title, role: .destructive) {
-                        if profileOption == .delete {
-                            Task {
-                                await vm.deleteAccount()
-                            }
-                        } else {
-                            vm.signOutUser()
-                        }
-                    }
-                    Button("Cancel", role: .cancel) {}
-                } message: {
-                    Text(message)
-                }
-                
+            VStack {
                 if vm.isLoading {
                     LoadingView()
+                } else {
+                    ScrollView(showsIndicators: false) {
+                        VStack(spacing: 15) {
+                            
+                            Divider()
+                            
+                            VStack(alignment: .leading) {
+                                CategoryTitle(text: "Favorite books")
+                                CategorySubTitle(subtitle: "See the books you love.")
+                                booksGridView
+                                    .padding(.top, 5)
+                            }
+                            .padding(.top)
+                        }
+                        .padding()
+                    }
+                }
+            }
+            .navigationTitle("Favorite")
+            .toolbar {
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    menuItem
+                }
+            }
+            .confirmationDialog(title, isPresented: $showConfirmationDialog) {
+                confirmationButtons
+            } message: {
+                Text(message)
+            }
+            .task {
+                if vm.books.count == 0 {
+                    await vm.fetchFavoriteBooks()
                 }
             }
         }
     }
     
+    private var confirmationButtons: some View {
+        VStack {
+            Button(title, role: .destructive) {
+                if profileOption == .delete {
+                    Task {
+                        await vm.deleteAccount()
+                    }
+                } else {
+                    vm.signOutUser()
+                }
+            }
+            Button("Cancel", role: .cancel) {}
+        }
+    }
+    
     private var booksGridView: some View {
         LazyVGrid(columns: columns, spacing: 30) {
-            ForEach(items, id: \.self) { item in
-                VStack(alignment: .leading, spacing: 5) {
-                    BookCover(content: Image("cover").resizable())
-                    ContentTitle(text: "Pong Pong")
-                    RatingView(rating: "5.0")
-                }
-                .foregroundColor(Color(.label))
+            ForEach(vm.books) { book in
+                BookView(book: book)
             }
         }
     }
