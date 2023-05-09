@@ -37,7 +37,7 @@ class BookContentViewModel: ObservableObject {
         do {
             try await bookManager.addBookToFavorites(bookId: bookId)
             setupFeedbackView(text: "Added to favorites", imageName: "star.fill", isFavorite: true)
-            setupFavButton(text: "Remove from favorites", imageName: "star.slash.fill")
+            setupFavButton(text: "Removed from favorites", imageName: "star.slash.fill")
         } catch {
             showingAlert = true
             errorMessage = error.localizedDescription
@@ -85,6 +85,25 @@ class BookContentViewModel: ObservableObject {
         } catch {
             isBookFavorite = false
         }
+    }
+    
+    func addBookToRecent(book: Book?, page: Int) async {
+        
+        guard let bookId = book?.id, let numPages = book?.contents?.count else {
+            return
+        }
+        
+        let progress = calculateProgress(page: page, numPages: numPages)
+        
+        do {
+            try await bookManager.addBookToRecent(bookId: bookId, progress: progress)
+        } catch {}
+        
+    }
+    
+    func calculateProgress(page: Int, numPages: Int) -> Float {
+        let progress = Float(page + 1) / Float(numPages)
+        return progress
     }
     
     func setupFeedbackView(text: String, imageName: String, isFavorite: Bool) {

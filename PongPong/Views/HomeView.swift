@@ -14,56 +14,57 @@ struct HomeView: View {
     
     var body: some View {
         NavigationView {
-            ZStack {
-                ScrollView(showsIndicators: false) {
-                    VStack(spacing: 15) {
-                        
-                        Divider()
-                        
-                        VStack(alignment: .leading) {
-                            CategoryTitle(text: "Recent Books")
-                            recentBookList
-                                .frame(height: 255)
-                                .padding(.top, 5)
-                        }
-                        .padding(.top)
-                                            
-                        Divider()
-                        
-                        VStack(alignment: .leading) {
-                            CategoryTitle(text: "All Books")
-                            VerticalBookList(books: vm.books)
-                                .padding(.top, 5)
-                        }
-                        .padding(.top)
-                        
-                        if vm.isFetchingMore {
-                            moreButton
-                                .padding(.top)
-                        }
-                        
-                        Spacer()
-                    }
-                    .navigationTitle("Explore")
-                    .padding()
-                    .alert(isPresented: $vm.showingAlert) {
-                        Alert(title: Text("Something is wrong"), message: Text(vm.errorMessage), dismissButton: .default(Text("Okay")))
-                    }
-                }
-                .refreshable {
-                    fetchTask = Task {
-                        await vm.refetchBooks()
-                    }
-                }
-                
+            VStack {
                 if vm.isLoading {
                     LoadingView()
+                } else {
+                    ScrollView(showsIndicators: false) {
+                        VStack(spacing: 15) {
+                            
+                            Divider()
+                            
+                            HorizontalBookSection(title: "Recent Books", subtitle: "Books you've not finished reading.", books: vm.recentBooks, showProgessView: true)
+                                .padding(.top)
+                            
+                            Divider()
+                            
+                            HorizontalBookSection(title: "New Books", subtitle: "Explore new release books for this week.", books: vm.newBooks)
+                                .padding(.top)
+                            
+                            Divider()
+                            
+                            VStack(alignment: .leading) {
+                                CategoryTitle(text: "More to Explore")
+                                CategorySubTitle(subtitle: "Browse for all free books.")
+                                VerticalBookList(books: vm.books)
+                                    .padding(.top, 5)
+                            }
+                            .padding(.top)
+                            
+                            if vm.isFetchingMore {
+                                moreButton
+                                    .padding(.top)
+                            }
+                            
+                            Spacer()
+                        }
+                        .padding()
+                    }
+                }
+            }
+            .navigationTitle("Explore")
+            .alert(isPresented: $vm.showingAlert) {
+                Alert(title: Text("Something is wrong"), message: Text(vm.errorMessage), dismissButton: .default(Text("Okay")))
+            }
+            .refreshable {
+                fetchTask = Task {
+                    await vm.refetchBooks()
                 }
             }
         }
         .task {
             if vm.books.count == 0 {
-                await vm.fetchBooks()
+                await vm.fetchAllBookTypes()
             }
         }
         .onDisappear {
@@ -77,23 +78,6 @@ struct HomeView: View {
                 await vm.fetchBooks()
             }
         }, title: "More books", backgroundColor: .orange)
-    }
-    
-    private var recentBookList: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 20) {
-                ForEach(1...10, id: \.self) {_ in
-//                    NavigationLink(destination: BookContentView()) {
-                        VStack(alignment: .leading, spacing: 5) {
-                            BookCover(content: Image("cover").resizable())
-                            ContentTitle(text: "Pong Pong")
-                            RatingView(rating: "5.0")
-                        }
-                        .foregroundColor(Color(.label))
-//                    }
-                }
-            }
-        }
     }
 }
 

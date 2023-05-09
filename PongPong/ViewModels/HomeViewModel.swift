@@ -10,64 +10,65 @@ import Firebase
 
 @MainActor
 class HomeViewModel: ObservableObject {
+    @Published var recentBooks = [Book]()
+    @Published var newBooks = [Book]()
     @Published var books = [Book]()
+    
     @Published var showingAlert = false
     @Published var errorMessage = ""
     @Published var isLoading = false
     @Published var isFetchingMore = true
-     
-    private var lastDocumentSnapshot: QueryDocumentSnapshot?
-    private let limit = 3
+    
+    private let bookManager = BookManager()
     
     func refetchBooks() async {
-        books.removeAll()
-        lastDocumentSnapshot = nil
+        isLoading = true
         
-        await fetchBooks()
+        do {
+            let (recentBooks, newBooks, allBooks) = try await bookManager.refetchBooks()
+            self.recentBooks = recentBooks
+            self.newBooks = newBooks
+            self.books = allBooks
+        } catch {
+            showingAlert = true
+            errorMessage = error.localizedDescription
+        }
+        
+        isLoading = false
     }
     
     func fetchBooks() async {
-        
-        isLoading = true
         
         if isFetchingMore == false {
             return
         }
         
+        isLoading = true
+        
         do {
-            let bookCollection = FirebaseManager.shared.firestore
-                .collection(FirebaseConstants.bookCollection)
-            var documents = [QueryDocumentSnapshot]()
+            let books = try await bookManager.fetchAllBooks()
             
-            if let lastDocumentSnapshot = lastDocumentSnapshot {
-                documents = try await bookCollection
-                    .start(afterDocument: lastDocumentSnapshot)
-                    .limit(to: limit)
-                    .getDocuments()
-                    .documents
-            } else {
-                documents = try await bookCollection
-                    .limit(to: limit)
-                    .getDocuments()
-                    .documents
-            }
-            
-            if documents.isEmpty {
+            if books.isEmpty {
                 isFetchingMore = false
             }
             
-            documents.forEach { snapshot in
-                do {
-                    let book = try snapshot.data(as: Book.self)
-                    books.append(book)
-                } catch {
-                    showingAlert = true
-                    errorMessage = error.localizedDescription
-                }
-            }
-            
-            //keep track the last document for pagination
-            lastDocumentSnapshot = documents.last
+            self.books.append(contentsOf: books)
+        } catch {
+            showingAlert = true
+            errorMessage = error.localizedDescription
+        }
+        
+        isLoading = false
+    }
+    
+    func fetchAllBookTypes() async {
+        isLoading = true
+        
+        do {
+            let (recentBooks, newBooks, allBooks) = try await bookManager.fetchAllBookTypes()
+            self.recentBooks = recentBooks
+            self.newBooks = newBooks
+            self.books = allBooks
         } catch {
             showingAlert = true
             errorMessage = error.localizedDescription

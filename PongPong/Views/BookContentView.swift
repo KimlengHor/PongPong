@@ -14,11 +14,12 @@ struct BookContentView: View {
     
     @Environment(\.presentationMode) var presentationMode
     @State private var hideNavigationBar = true
+    @State private var page = 0
+    @State var addProgressTask: Task<(), Never>?
     
     @StateObject private var vm = BookContentViewModel()
     
     var body: some View {
-        
         NavigationView {
             ZStack() {
                 
@@ -45,23 +46,37 @@ struct BookContentView: View {
         .task {
             await vm.checkIfBookInFavorites(book: book)
         }
+        .onDisappear {
+            addProgressTask?.cancel()
+        }
     }
     
     private var contentTabView: some View {
-        TabView {
-            ForEach(book?.contents ?? [], id: \.self) { content in
-                WebImage(url: URL(string: content))
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .onTapGesture {
-                        hideNavigationBar.toggle()
-                    }
+        TabView(selection: $page) {
+            if let contents = book?.contents {
+                ForEach(Array(contents.enumerated()), id: \.offset) { index, content in
+                    WebImage(url: URL(string: content))
+                        .resizable()
+                        .tag(index)
+                        .aspectRatio(contentMode: .fit)
+                        .onTapGesture {
+                            hideNavigationBar.toggle()
+                        }
+                }
             }
         }
         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
         .frame(maxWidth: .infinity)
         .frame(maxHeight: .infinity)
         .indexViewStyle(.page(backgroundDisplayMode: .always))
+        .onChange(of: page) { value in
+            
+            addProgressTask?.cancel()
+            
+            addProgressTask = Task {
+                await vm.addBookToRecent(book: book, page: page)
+            }
+        }
     }
     
     private var topNavBarView: some View {

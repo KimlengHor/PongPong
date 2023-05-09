@@ -21,40 +21,40 @@ struct SearchView: View {
     
     var body: some View {
         NavigationView {
-            ZStack {
-                ScrollView(showsIndicators: false) {
-                    VStack(spacing: 20) {
-                        searchTextFiled
-                            .onDisappear {
-                                searchTask?.cancel()
-                            }
-                            .focused($focusedField, equals: .searchText)
-                        
-                        Divider()
-                        
-                        if let books = vm.books {
-                            if books.isEmpty {
-                                CategoryTitle(text: "No results")
-                                    .padding(.top)
-                            } else {
-                                VStack(alignment: .leading) {
-                                    CategoryTitle(text: "Results")
-                                    VerticalBookList(books: books)
-                                        .padding(.top, 7)
-                                }.padding(.top)
-                            }
-                        }
-                        
-                        Spacer()
-                    }
-                    .padding()
-                    .navigationTitle("Search")
-                }
-                
+            VStack {
                 if vm.isLoading {
                     LoadingView()
+                } else {
+                    ScrollView(showsIndicators: false) {
+                        VStack(spacing: 20) {
+                            searchTextFiled
+                                .onDisappear {
+                                    searchTask?.cancel()
+                                }
+                                .focused($focusedField, equals: .searchText)
+                            
+                            Divider()
+                            
+                            if let books = vm.books {
+                                if books.isEmpty {
+                                    CategoryTitle(text: "No results")
+                                        .padding(.top)
+                                } else {
+                                    VStack(alignment: .leading) {
+                                        CategoryTitle(text: "Results")
+                                        VerticalBookList(books: books)
+                                            .padding(.top, 7)
+                                    }.padding(.top)
+                                }
+                            }
+                            
+                            Spacer()
+                        }
+                        .padding()
+                    }
                 }
             }
+            .navigationTitle("Search")
         }
         .onAppear {
             focusedField = .searchText

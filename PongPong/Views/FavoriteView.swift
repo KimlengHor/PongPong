@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SDWebImageSwiftUI
 
 struct FavoriteView: View {
     
@@ -21,8 +20,6 @@ struct FavoriteView: View {
     }
     
     @State private var profileOption = ProfileOption.logout
-    
-    let items = ["Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6", "Item 7", "Item 8", "Item 9"]
 
     let columns: [GridItem] = [
         GridItem(.flexible(), spacing: 15),
@@ -31,36 +28,37 @@ struct FavoriteView: View {
     
     var body: some View {
         NavigationView {
-            ZStack {
-                ScrollView(showsIndicators: false) {
-                    VStack(spacing: 15) {
-                        
-                        Divider()
-                        
-                        VStack(alignment: .leading) {
-                            CategoryTitle(text: "All your favorite books")
-                            booksGridView
-                                .padding(.top, 5)
-                        }
-                        .padding(.top)
-                    }
-                    .padding()
-                }
-                .navigationTitle("Favorite")
-                .toolbar {
-                    ToolbarItemGroup(placement: .navigationBarTrailing) {
-                        menuItem
-                    }
-                }
-                .confirmationDialog(title, isPresented: $showConfirmationDialog) {
-                    confirmationButtons
-                } message: {
-                    Text(message)
-                }
-                
+            VStack {
                 if vm.isLoading {
                     LoadingView()
+                } else {
+                    ScrollView(showsIndicators: false) {
+                        VStack(spacing: 15) {
+                            
+                            Divider()
+                            
+                            VStack(alignment: .leading) {
+                                CategoryTitle(text: "Favorite books")
+                                CategorySubTitle(subtitle: "See the books you love.")
+                                booksGridView
+                                    .padding(.top, 5)
+                            }
+                            .padding(.top)
+                        }
+                        .padding()
+                    }
                 }
+            }
+            .navigationTitle("Favorite")
+            .toolbar {
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    menuItem
+                }
+            }
+            .confirmationDialog(title, isPresented: $showConfirmationDialog) {
+                confirmationButtons
+            } message: {
+                Text(message)
             }
             .task {
                 if vm.books.count == 0 {
@@ -88,13 +86,7 @@ struct FavoriteView: View {
     private var booksGridView: some View {
         LazyVGrid(columns: columns, spacing: 30) {
             ForEach(vm.books) { book in
-                VStack(alignment: .leading, spacing: 5) {
-                    BookCover(content: WebImage(url: URL(string: book.cover ?? ""))
-                        .resizable())
-                    ContentTitle(text: book.title?.capitalized ?? "")
-                    RatingView(rating: String(book.rating ?? 0))
-                }
-                .foregroundColor(Color(.label))
+                BookView(book: book)
             }
         }
     }

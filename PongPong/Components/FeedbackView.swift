@@ -21,6 +21,7 @@ struct FeedbackView: View {
             Text(text)
         }
         .withSmallMiddleViewFomatting()
+        .foregroundColor(Color(.label))
     }
 }
 
