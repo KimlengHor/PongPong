@@ -6,11 +6,9 @@
 //
 
 import Foundation
-import Firebase
 
 @MainActor
 class FavoriteViewModel: ObservableObject {
-    let authMananger = FirebaseAuthManager()
     let bookMananger = BookManager()
     
     @Published var errorMessage = ""
@@ -18,28 +16,6 @@ class FavoriteViewModel: ObservableObject {
     @Published var isLoading = false
     
     @Published var books = [Book]()
-    
-    func signOutUser() {
-        do {
-            try authMananger.signOutUser()
-        } catch {
-            showingAlert = true
-            errorMessage = error.localizedDescription
-        }
-    }
-    
-    func deleteAccount() async {
-        isLoading = true
-        
-        do {
-            try await authMananger.deleteAcount()
-        } catch {
-            showingAlert = true
-            errorMessage = error.localizedDescription
-        }
-        
-        isLoading = false
-    }
     
     func fetchFavoriteBooks() async {
         isLoading = true
@@ -52,6 +28,19 @@ class FavoriteViewModel: ObservableObject {
         }
         
         isLoading = false
+    }
+    
+    func modifyFavBooks(book: Book, remove: Bool = false) {
+        if remove {
+            for i in 0..<books.count {
+                if books[i].id == book.id {
+                    books.remove(at: i)
+                    return
+                }
+            }
+        } else {
+            books.append(book)
+        }
     }
 }
 

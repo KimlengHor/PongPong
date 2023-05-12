@@ -23,7 +23,7 @@ class BookManager {
         .collection(FirebaseConstants.bookCollection)
     
     private var bookLastDocumentSnapshot: QueryDocumentSnapshot?
-    private let limit = 3
+    private let limit = 20
     
     private let email = FirebaseManager.shared.auth.currentUser?.email
     
@@ -160,7 +160,9 @@ class BookManager {
         return (recentBooks, newBooks, allBooks)
     }
     
-    func addBookToRecent(bookId: String, progress: Float) async throws {
+    func addBookToRecent(bookId: String?, progress: Float) async throws {
+        
+        guard let bookId = bookId else { return }
         
         let documentRef = recentCollection.document(email ?? "").collection(FirebaseConstants.bookCollection).document(bookId)
         
@@ -189,7 +191,7 @@ class BookManager {
                 if let progress = doc[FirebaseConstants.progressField] as? Float {
                     let bookDoc = try await bookCollection.document(doc.documentID).getDocument()
                     var book = try bookDoc.data(as: Book.self)
-                    book.setProgress(String("\(Int(progress * 100))%"))
+                    book.setProgress(progress)
                     books.append(book)
                 }
             }

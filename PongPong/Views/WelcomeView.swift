@@ -14,16 +14,17 @@ struct WelcomeView: View {
                 
                 Spacer()
                 
-                Image("illustration")
+                Image(ImageConstants.welcome)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                 
                 Spacer()
                 
                 Text("Welcome to a World of Adventure: Get Started with Our Kid Book App!")
-                    .font(FontConstants.twentyThreeSemi)
+                    .font(.system(size: 24, weight: .medium, design: .serif))
+                    
                 Text("Let's dive into a world of imagination! Create your profile and discover exciting books in our Kid Book App for endless fun!")
-                    .font(FontConstants.fifteenReg)
+                    .font(.system(size: 15, weight: .regular, design: .serif))
                     .foregroundColor(Color.gray)
                     .padding(.bottom, 32)
                 
@@ -32,7 +33,6 @@ struct WelcomeView: View {
                 NavButtonWithLeadingText(
                     text: "Don't have an account?",
                     buttonText: "Sign up",
-                    buttonColor: Color(.orange),
                     destination: SignupView())
             }
             .padding(.horizontal, 24)
@@ -43,7 +43,7 @@ struct WelcomeView: View {
     }
     
     private var loginButton: some View {
-        NavCustomButton(title: "Login", backgroundColor: Color(.orange), destination: SigninView())
+        NavCustomButton(title: "Login", destination: SigninView())
     }
 }
 

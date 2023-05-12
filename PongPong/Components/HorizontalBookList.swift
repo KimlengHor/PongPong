@@ -19,7 +19,7 @@ struct HorizontalBookList: View {
                     BookView(book: book, showProgessView: showProgessView)
                 }
             }
-//            .padding(.horizontal)
+            .padding(.horizontal)
         }
     }
 }

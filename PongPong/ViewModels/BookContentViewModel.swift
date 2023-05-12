@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 @MainActor
 class BookContentViewModel: ObservableObject {
@@ -68,9 +69,9 @@ class BookContentViewModel: ObservableObject {
         isLoading = false
     }
     
-    func checkIfBookInFavorites(book: Book?) async {
+    func checkIfBookInFavorites(bookId: String?) async {
         setupFavButton(text: "Add to favorites", imageName: "star.fill")
-        guard let bookId = book?.id else {
+        guard let bookId = bookId else {
             isBookFavorite = false
             return
         }
@@ -81,7 +82,6 @@ class BookContentViewModel: ObservableObject {
                 isBookFavorite = true
                 setupFavButton(text: "Remove from favorites", imageName: "star.slash.fill")
             }
-            
         } catch {
             isBookFavorite = false
         }
@@ -89,21 +89,17 @@ class BookContentViewModel: ObservableObject {
     
     func addBookToRecent(book: Book?, page: Int) async {
         
-        guard let bookId = book?.id, let numPages = book?.contents?.count else {
+        guard let numPages = book?.contents?.count else {
             return
         }
         
-        let progress = calculateProgress(page: page, numPages: numPages)
+        let progress = page.calculateProgress(numPages: numPages)
+        
+        storeBookIdToUserDefault(bookId: book?.id, progress: progress)
         
         do {
-            try await bookManager.addBookToRecent(bookId: bookId, progress: progress)
+            try await bookManager.addBookToRecent(bookId: book?.id, progress: progress)
         } catch {}
-        
-    }
-    
-    func calculateProgress(page: Int, numPages: Int) -> Float {
-        let progress = Float(page + 1) / Float(numPages)
-        return progress
     }
     
     func setupFeedbackView(text: String, imageName: String, isFavorite: Bool) {
@@ -122,5 +118,20 @@ class BookContentViewModel: ObservableObject {
     func setupFavButton(text: String, imageName: String) {
         favButtonText = text
         favButtonImageName = imageName
+    }
+    
+    func storeBookIdToUserDefault(bookId: String?, progress: Float) {
+        guard let bookId = bookId else { return }
+        
+        let userDefaults = UserDefaults.standard
+        
+        if progress >= 0.8 {
+            let bookIdsKey = UserDefaultConstants.bookIdsKey
+            var storedBookIds = userDefaults.array(forKey: bookIdsKey) as? [String] ?? []
+            if !storedBookIds.contains(bookId) {
+                storedBookIds.append(bookId)
+                userDefaults.set(storedBookIds, forKey: bookIdsKey)
+            }
+        }
     }
 }

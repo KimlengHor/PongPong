@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		710D44842A0C2B5C005B0AE1 /* IntegerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710D44832A0C2B5C005B0AE1 /* IntegerExtension.swift */; };
+		710D44862A0C31F8005B0AE1 /* ColorConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710D44852A0C31F8005B0AE1 /* ColorConstants.swift */; };
+		710D448A2A0D28BE005B0AE1 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 710D44892A0D28BE005B0AE1 /* Launch Screen.storyboard */; };
+		710D448C2A0D3970005B0AE1 /* PongPongViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710D448B2A0D396F005B0AE1 /* PongPongViewModel.swift */; };
+		710D448E2A0D472D005B0AE1 /* ImageConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710D448D2A0D472D005B0AE1 /* ImageConstants.swift */; };
+		710D44C82A0E9008005B0AE1 /* UserDefaultConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710D44C72A0E9008005B0AE1 /* UserDefaultConstants.swift */; };
+		710D44CA2A0EBD66005B0AE1 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710D44C92A0EBD66005B0AE1 /* NotificationView.swift */; };
+		710D44CC2A0ECFB8005B0AE1 /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710D44CB2A0ECFB8005B0AE1 /* NotificationViewModel.swift */; };
 		713291882A03FA1400483F8D /* FavoriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713291872A03FA1400483F8D /* FavoriteViewModel.swift */; };
 		7136DDF629F81D24000B472A /* AppleAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7136DDF529F81D24000B472A /* AppleAuthentication.swift */; };
 		7151AC2A29E5C1520002388E /* NavCustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7151AC2929E5C1520002388E /* NavCustomButton.swift */; };
@@ -70,6 +78,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		710D44832A0C2B5C005B0AE1 /* IntegerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegerExtension.swift; sourceTree = "<group>"; };
+		710D44852A0C31F8005B0AE1 /* ColorConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorConstants.swift; sourceTree = "<group>"; };
+		710D44892A0D28BE005B0AE1 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		710D448B2A0D396F005B0AE1 /* PongPongViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PongPongViewModel.swift; sourceTree = "<group>"; };
+		710D448D2A0D472D005B0AE1 /* ImageConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageConstants.swift; sourceTree = "<group>"; };
+		710D44C72A0E9008005B0AE1 /* UserDefaultConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultConstants.swift; sourceTree = "<group>"; };
+		710D44C92A0EBD66005B0AE1 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		710D44CB2A0ECFB8005B0AE1 /* NotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewModel.swift; sourceTree = "<group>"; };
 		713291872A03FA1400483F8D /* FavoriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewModel.swift; sourceTree = "<group>"; };
 		7136DDF529F81D24000B472A /* AppleAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleAuthentication.swift; sourceTree = "<group>"; };
 		7151AC2929E5C1520002388E /* NavCustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavCustomButton.swift; sourceTree = "<group>"; };
@@ -205,6 +221,8 @@
 				7151AC2B29E5C4670002388E /* ForgotPasswordView.swift */,
 				7151AC2D29E5CC3A0002388E /* SignupWithEmailView.swift */,
 				719069F229FD63EE003BE3EE /* FavoriteView.swift */,
+				710D44C92A0EBD66005B0AE1 /* NotificationView.swift */,
+				710D44892A0D28BE005B0AE1 /* Launch Screen.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -263,6 +281,8 @@
 				7152A91E29E85566001D9518 /* SignupViewModel.swift */,
 				713291872A03FA1400483F8D /* FavoriteViewModel.swift */,
 				716D72E72A045A51008C90E8 /* BookContentViewModel.swift */,
+				710D448B2A0D396F005B0AE1 /* PongPongViewModel.swift */,
+				710D44CB2A0ECFB8005B0AE1 /* NotificationViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -272,6 +292,9 @@
 			children = (
 				718D38C729DF44A60055CBC4 /* FirebaseConstants.swift */,
 				71C1D84029E30A9F00A7A526 /* FontConstants.swift */,
+				710D44852A0C31F8005B0AE1 /* ColorConstants.swift */,
+				710D448D2A0D472D005B0AE1 /* ImageConstants.swift */,
+				710D44C72A0E9008005B0AE1 /* UserDefaultConstants.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -308,6 +331,7 @@
 			isa = PBXGroup;
 			children = (
 				71BD6E2E2A059F2600B98041 /* HepticMananger.swift */,
+				710D44832A0C2B5C005B0AE1 /* IntegerExtension.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -387,6 +411,7 @@
 			files = (
 				718EE04E29E1F494006FD476 /* Poppins-SemiBold.ttf in Resources */,
 				715C724C29DCA0AE002A8B81 /* Preview Assets.xcassets in Resources */,
+				710D448A2A0D28BE005B0AE1 /* Launch Screen.storyboard in Resources */,
 				718EE05029E1F494006FD476 /* Poppins-Bold.ttf in Resources */,
 				718EE04D29E1F494006FD476 /* Poppins-Medium.ttf in Resources */,
 				718EE04F29E1F494006FD476 /* Poppins-Regular.ttf in Resources */,
@@ -405,6 +430,7 @@
 				71788A6729E0C6BB00D8883D /* SignupView.swift in Sources */,
 				71788A6929E0C73000D8883D /* CustomButton.swift in Sources */,
 				718D38A929DCC6210055CBC4 /* BookCover.swift in Sources */,
+				710D44CA2A0EBD66005B0AE1 /* NotificationView.swift in Sources */,
 				718D38AD29DCDD4F0055CBC4 /* BookContentView.swift in Sources */,
 				718EE04029E1DA48006FD476 /* NavigationSubtitle.swift in Sources */,
 				71C1D84329E4E4E600A7A526 /* LoadingView.swift in Sources */,
@@ -416,10 +442,12 @@
 				7151AC2E29E5CC3A0002388E /* SignupWithEmailView.swift in Sources */,
 				7151AC2A29E5C1520002388E /* NavCustomButton.swift in Sources */,
 				7163BAA52A09B72E00566DAF /* HorizontalBookSection.swift in Sources */,
+				710D44842A0C2B5C005B0AE1 /* IntegerExtension.swift in Sources */,
 				718EE03C29E1CA21006FD476 /* SigninView.swift in Sources */,
 				718D38BF29DF0EED0055CBC4 /* HomeViewModel.swift in Sources */,
 				7163BAA12A09A5A200566DAF /* BookView.swift in Sources */,
 				71C1D84129E30A9F00A7A526 /* FontConstants.swift in Sources */,
+				710D44C82A0E9008005B0AE1 /* UserDefaultConstants.swift in Sources */,
 				718D38A529DCB3AD0055CBC4 /* CategoryTitle.swift in Sources */,
 				71788A6B29E0DE0900D8883D /* NavButtonWithLeadingText.swift in Sources */,
 				71788A6529E0BC6300D8883D /* WelcomeView.swift in Sources */,
@@ -428,6 +456,7 @@
 				718D38BA29DE4E040055CBC4 /* Book.swift in Sources */,
 				718EE04529E1E6AA006FD476 /* SigninViewModel.swift in Sources */,
 				716D72E62A0455AC008C90E8 /* BookManager.swift in Sources */,
+				710D44862A0C31F8005B0AE1 /* ColorConstants.swift in Sources */,
 				718D38AB29DCD0F30055CBC4 /* RatingView.swift in Sources */,
 				71A3FDE529DF77A10072EA07 /* SearchViewModel.swift in Sources */,
 				713291882A03FA1400483F8D /* FavoriteViewModel.swift in Sources */,
@@ -441,11 +470,14 @@
 				71A3FDE129DF751B0072EA07 /* TabBarView.swift in Sources */,
 				719069F329FD63EE003BE3EE /* FavoriteView.swift in Sources */,
 				715C725429DCA10A002A8B81 /* HomeView.swift in Sources */,
+				710D44CC2A0ECFB8005B0AE1 /* NotificationViewModel.swift in Sources */,
 				71788A6329E06F9E00D8883D /* OffsettableScrollView.swift in Sources */,
+				710D448C2A0D3970005B0AE1 /* PongPongViewModel.swift in Sources */,
 				7136DDF629F81D24000B472A /* AppleAuthentication.swift in Sources */,
 				7151AC2C29E5C4670002388E /* ForgotPasswordView.swift in Sources */,
 				7163BAA32A09B66200566DAF /* HorizontalBookList.swift in Sources */,
 				716A28D729F7220C00782102 /* FacebookAuthentication.swift in Sources */,
+				710D448E2A0D472D005B0AE1 /* ImageConstants.swift in Sources */,
 				7152A91F29E85566001D9518 /* SignupViewModel.swift in Sources */,
 				718EE04729E1EE7A006FD476 /* SecureTextFieldWIthTitle.swift in Sources */,
 			);
@@ -586,9 +618,11 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -596,9 +630,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kimleng.PongPong;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -620,9 +657,11 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -630,9 +669,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kimleng.PongPong;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

@@ -16,8 +16,10 @@ struct SearchView: View {
     
     @State var searchTask: Task<(), Never>?
     @State private var searchText: String = ""
+    @State private var categoryTitle: String = "Discover"
     
     @StateObject var vm = SearchViewModel()
+    
     
     var body: some View {
         NavigationView {
@@ -37,11 +39,10 @@ struct SearchView: View {
                             
                             if let books = vm.books {
                                 if books.isEmpty {
-                                    CategoryTitle(text: "No results")
-                                        .padding(.top)
+                                    notFoundView
                                 } else {
                                     VStack(alignment: .leading) {
-                                        CategoryTitle(text: "Results")
+                                        CategoryTitle(text: categoryTitle)
                                         VerticalBookList(books: books)
                                             .padding(.top, 7)
                                     }.padding(.top)
@@ -52,12 +53,33 @@ struct SearchView: View {
                         }
                         .padding()
                     }
+                    .scrollDismissesKeyboard(.immediately)
                 }
             }
-            .navigationTitle("Search")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Text("Search")
+                        .font(FontConstants.thirtyFiveBold)
+                }
+            }
         }
-        .onAppear {
-            focusedField = .searchText
+        .task {
+            if vm.books == nil || vm.books?.isEmpty == true {
+                searchText = ""
+                categoryTitle = "Discover"
+                await vm.searchBooks(searchText: searchText)
+                focusedField = .searchText
+            }
+        }
+    }
+    
+    private var notFoundView: some View {
+        VStack {
+            Image(ImageConstants.notFound)
+            CategoryTitle(text: "Oops!")
+            CategorySubTitle(subtitle: "We cannot find the book you were searching for.")
+                .frame(width: 200)
+                .multilineTextAlignment(.center)
         }
     }
     
@@ -72,6 +94,7 @@ struct SearchView: View {
             .submitLabel(.search)
             .onSubmit {
                 searchTask = Task {
+                    categoryTitle = "Results"
                     await vm.searchBooksAgain(searchText: searchText)
                 }
             }

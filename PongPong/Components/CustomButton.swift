@@ -11,14 +11,13 @@ struct CustomButton: View {
     
     let action: () -> Void
     let title: String
-    let backgroundColor: Color
+    var backgroundColor: Color = ColorConstants.primaryColor
     var image: Image?
     
     var body: some View {
         Button(action: action) {
             ButtonBodyView(title: title, backgroundColor: backgroundColor, image: image)
         }
-        
     }
 }
 
@@ -37,19 +36,19 @@ struct ButtonBodyView: View {
     var image: Image?
     
     var body: some View {
-        ZStack(alignment: .leading) {
+        HStack(alignment: .center) {
             if let image = image {
                 image
                     .resizable()
-                    .frame(width: 30, height: 30)
+                    .frame(width: 15, height: 15)
                     .aspectRatio(contentMode: .fit)
-                    .padding(.leading)
             }
             Text(title)
-                .font(FontConstants.fifteenMedium)
-                .frame(height: 56)
-                .frame(maxWidth: .infinity)
+                .font(.system(size: 23, weight: .medium))
+
         }
+        .frame(height: 56)
+        .frame(maxWidth: .infinity)
         .background(backgroundColor)
         .foregroundColor(Color(.white))
         .cornerRadius(10)

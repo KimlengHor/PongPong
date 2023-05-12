@@ -9,7 +9,7 @@ import SwiftUI
 
 struct NavCustomButton<Destination: View>: View {
     let title: String
-    let backgroundColor: Color
+    var backgroundColor: Color = ColorConstants.primaryColor
     var image: Image?
     let destination: Destination
     
