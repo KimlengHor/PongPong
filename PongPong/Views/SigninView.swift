@@ -13,9 +13,9 @@ struct SigninView: View {
     
     @State var emailAddress: String = ""
     @State var password: String = ""
-    @State var shouldPresentTabBarView = false
     
     @StateObject var vm = SigninViewModel()
+    @EnvironmentObject var pongPongViewModel: PongPongViewModel
     
     let appleAuth = AppleAuthentication()
     
@@ -50,18 +50,17 @@ struct SigninView: View {
                         signInWithApple
                         signInWithGoogle
                         signInWithFacebook
-                        
-                        //                    CustomButton(action: {
-                        //
-                        //                    }, title: "Sign up with Email", backgroundColor: Color(.orange))
-                        
                         signUpButton
                         .padding(.top, 20)
                     }
                     .padding(.top, 20)
                 }
-                .navigationTitle("Sign in")
-                .padding(.vertical)
+                .toolbar {
+                    ToolbarItem(placement: .principal) {
+                        Text("Sign in")
+                            .font(FontConstants.thirtyFiveBold)
+                    }
+                }
                 .padding(.horizontal, 24)
             }
             .alert(isPresented: $vm.showingAlert) {
@@ -72,24 +71,15 @@ struct SigninView: View {
                 LoadingView(text: "Signing in")
             }
         }
-        .fullScreenCover(isPresented: $shouldPresentTabBarView) {
-            TabBarView()
-        }
-    }
-    
-    private func goToTabBarView() {
-        if vm.user != nil {
-            shouldPresentTabBarView = true
-        }
     }
     
     private var loginButton: some View {
         CustomButton(action: {
             Task {
                 await vm.signInUser(email: emailAddress, password: password)
-                goToTabBarView()
+                pongPongViewModel.checkForCurrentUser()
             }
-        }, title: "Login", backgroundColor: .orange)
+        }, title: "Login")
     }
     
     private var forgotPasswordButton: some View {
@@ -106,11 +96,11 @@ struct SigninView: View {
         } onCompletion: { result in
             Task {
                 await vm.signInWithApple(currentNonce: appleAuth.currentNonce, result: result)
-                goToTabBarView()
+                pongPongViewModel.checkForCurrentUser()
             }
         }
         .cornerRadius(10)
-        .frame(height: 60)
+        .frame(height: 56)
 //        CustomButton(action: {},
 //                     title: "Continue with Apple",
 //                     backgroundColor: Color(cgColor: CGColor(red: 0.02, green: 0.03, blue: 0.03, alpha: 1)),
@@ -121,7 +111,7 @@ struct SigninView: View {
         CustomButton(action: {
             Task {
                 await vm.signInWithGoogle()
-                goToTabBarView()
+                pongPongViewModel.checkForCurrentUser()
             }
         },
                      title: "Continue with Google",
@@ -133,7 +123,7 @@ struct SigninView: View {
         CustomButton(action: {
             Task {
                 await vm.signInWithFacebook()
-                goToTabBarView()
+                pongPongViewModel.checkForCurrentUser()
             }
         },
                      title: "Continue with Facebook",
@@ -145,7 +135,6 @@ struct SigninView: View {
         NavButtonWithLeadingText(
             text: "Don't have an account?",
             buttonText: "Sign up",
-            buttonColor: Color(.orange),
             destination: SignupView())
     }
 }

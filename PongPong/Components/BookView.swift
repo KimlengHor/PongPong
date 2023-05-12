@@ -26,10 +26,10 @@ struct BookView: View {
                     if showProgessView {
                         VStack {
                             HStack {
-                                ProgressView(value: 0.5, total: 1)
+                                ProgressView(value: book.progress, total: 1)
                                     .scaleEffect(CGSize(width: 1, height: 1.5))
                                     .tint(Color.green)
-                                Text(book.progressPercentage ?? "")
+                                Text(book.getProgressString())
                                     .font(FontConstants.elevenSemi)
                             }
                             .padding(.horizontal, 5)

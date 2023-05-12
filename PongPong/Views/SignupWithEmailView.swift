@@ -34,9 +34,14 @@ struct SignupWithEmailView: View {
                         await vm.signupWithEmail(email: emailAddress, password: password)
                         isLoading = false
                     }
-                }, title: "Sign up", backgroundColor: Color.orange)
+                }, title: "Sign up")
             }
-            .navigationTitle("Sign up")
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text("Sign up")
+                        .font(FontConstants.thirtyFiveBold)
+                }
+            }
             .padding(.vertical)
             .padding(.horizontal, 24)
             .alert(isPresented: $vm.showingAlert) {

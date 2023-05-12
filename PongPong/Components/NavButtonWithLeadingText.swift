@@ -10,7 +10,7 @@ import SwiftUI
 struct NavButtonWithLeadingText<Destination: View>: View {
     let text: String
     let buttonText: String
-    let buttonColor: Color
+    var buttonColor: Color = ColorConstants.primaryColor
     let destination: Destination
     
     var body: some View {
@@ -27,12 +27,11 @@ struct NavButtonWithLeadingText<Destination: View>: View {
     }
 }
 
-//struct ButtonWithLeadingText_Previews: PreviewProvider {
+//struct NavButtonWithLeadingText_Previews: PreviewProvider {
 //    static var previews: some View {
 //        ButtonWithLeadingText(
 //            text: "Don't have an account",
 //            buttonText: "Sign up",
-//            buttonColor: Color(.orange),
 //    }
 //}
 

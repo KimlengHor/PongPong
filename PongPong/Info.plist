@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>UIUserInterfaceStyle</key>
-	<string>Light</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -23,13 +21,6 @@
 			</array>
 		</dict>
 	</array>
-	<key>UIAppFonts</key>
-	<array>
-		<string>Poppins-Bold.ttf</string>
-		<string>Poppins-Medium.ttf</string>
-		<string>Poppins-Regular.ttf</string>
-		<string>Poppins-SemiBold.ttf</string>
-	</array>
 	<key>FacebookAppID</key>
 	<string>603180404853086</string>
 	<key>FacebookClientToken</key>
@@ -41,6 +32,13 @@
 		<string>fbapi</string>
 		<string>fbauth2</string>
 		<string>fb-messenger-share-api</string>
+	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Poppins-Bold.ttf</string>
+		<string>Poppins-Medium.ttf</string>
+		<string>Poppins-Regular.ttf</string>
+		<string>Poppins-SemiBold.ttf</string>
 	</array>
 </dict>
 </plist>

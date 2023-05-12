@@ -10,14 +10,18 @@ import SDWebImageSwiftUI
 
 struct BookContentView: View {
     
-    let book: Book?
+    let book: Book
     
     @Environment(\.presentationMode) var presentationMode
+    
     @State private var hideNavigationBar = true
     @State private var page = 0
     @State var addProgressTask: Task<(), Never>?
     
     @StateObject private var vm = BookContentViewModel()
+    
+    @EnvironmentObject var homeViewModel: HomeViewModel
+    @EnvironmentObject var favoriteViewModel: FavoriteViewModel
     
     var body: some View {
         NavigationView {
@@ -44,7 +48,10 @@ struct BookContentView: View {
         }
         .navigationBarBackButtonHidden(true)
         .task {
-            await vm.checkIfBookInFavorites(book: book)
+            await vm.checkIfBookInFavorites(bookId: book.id)
+        }
+        .onAppear {
+            page = Int((book.progress ?? 0) * Float(book.contents?.count ?? 0)) - 1
         }
         .onDisappear {
             addProgressTask?.cancel()
@@ -53,7 +60,7 @@ struct BookContentView: View {
     
     private var contentTabView: some View {
         TabView(selection: $page) {
-            if let contents = book?.contents {
+            if let contents = book.contents {
                 ForEach(Array(contents.enumerated()), id: \.offset) { index, content in
                     WebImage(url: URL(string: content))
                         .resizable()
@@ -75,6 +82,7 @@ struct BookContentView: View {
             
             addProgressTask = Task {
                 await vm.addBookToRecent(book: book, page: page)
+                homeViewModel.modifyRecentBooks(book: book, page: page)
             }
         }
     }
@@ -102,9 +110,11 @@ struct BookContentView: View {
             Button {
                 Task {
                     if vm.isBookFavorite == true {
-                        await vm.removeBookFromFavorites(bookId: book?.id)
+                        await vm.removeBookFromFavorites(bookId: book.id)
+                        favoriteViewModel.modifyFavBooks(book: book, remove: true)
                     } else {
-                        await vm.addBookToFavorites(bookId: book?.id)
+                        await vm.addBookToFavorites(bookId: book.id)
+                        favoriteViewModel.modifyFavBooks(book: book)
                     }
                     hideNavigationBar = true
                 }

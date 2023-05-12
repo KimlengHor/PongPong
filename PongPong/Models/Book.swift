@@ -18,14 +18,18 @@ struct Book: Codable, Identifiable {
     let description: String?
     let rating: Float?
     let timestamp: Date?
-    private(set) var progressPercentage: String?
+    private(set) var progress: Float?
     
     func capitalizedTitle() -> String? {
         return title?.capitalized
     }
     
-    mutating func setProgress(_ percentage: String) {
-        progressPercentage = percentage
+    mutating func setProgress(_ progress: Float) {
+        self.progress = progress
+    }
+    
+    func getProgressString() -> String {
+        return String("\(Int((progress ?? 0) * 100))%")
     }
 }
 

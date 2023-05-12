@@ -27,10 +27,14 @@ struct ForgotPasswordView: View {
                     Task {
                         await vm.resetPassword(email: emailAddress)
                     }
-                }, title: "Reset password", backgroundColor: Color.orange)
+                }, title: "Reset password")
             }
-            .navigationTitle("Forgot password?")
-            .padding(.vertical)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text("Forgot password")
+                        .font(FontConstants.thirtyFiveBold)
+                }
+            }
             .padding(.horizontal, 24)
             .alert(isPresented: $vm.showingAlert) {
                 Alert(title: Text("Something is wrong"), message: Text(vm.errorMessage), dismissButton: .default(Text("Okay")))

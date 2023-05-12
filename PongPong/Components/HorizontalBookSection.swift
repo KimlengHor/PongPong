@@ -17,8 +17,11 @@ struct HorizontalBookSection: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            CategoryTitle(text: title)
-            CategorySubTitle(subtitle: subtitle)
+            VStack(alignment: .leading) {
+                CategoryTitle(text: title)
+                CategorySubTitle(subtitle: subtitle)
+            }
+            .padding(.horizontal)
             HorizontalBookList(books: books, showProgessView: showProgessView)
                 .frame(height: 255)
                 .padding(.top, 5)

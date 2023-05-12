@@ -24,19 +24,27 @@ struct PongPongApp: App {
     // register app delegate for Firebase setup
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
+    @StateObject private var vm = PongPongViewModel()
+    
     var body: some Scene {
         WindowGroup {
-            if FirebaseManager.shared.auth.currentUser != nil {
-                TabBarView()
-            } else {
-                WelcomeView().onOpenURL { (url) in
-                    guard let urlScheme = url.scheme else { return }
-                    if urlScheme.hasPrefix("fb") {
-                        ApplicationDelegate.shared.application(UIApplication.shared,
-                                                               open: url,
-                                                               sourceApplication: nil,
-                                                               annotation: UIApplication.OpenURLOptionsKey.annotation) }
+            VStack {
+                if vm.isLoggedIn {
+                    TabBarView()
+                } else {
+                    WelcomeView().onOpenURL { (url) in
+                        guard let urlScheme = url.scheme else { return }
+                        if urlScheme.hasPrefix("fb") {
+                            ApplicationDelegate.shared.application(UIApplication.shared,
+                                                                   open: url,
+                                                                   sourceApplication: nil,
+                                                                   annotation: UIApplication.OpenURLOptionsKey.annotation) }
+                    }
                 }
+            }
+            .environmentObject(vm)
+            .onAppear {
+                UIApplication.shared.applicationIconBadgeNumber = 0
             }
         }
     }

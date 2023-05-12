@@ -34,8 +34,12 @@ struct SignupView: View {
                 
                 Spacer()
             }
-            .navigationTitle("Sign up")
-            .padding(.vertical)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text("Sign up")
+                        .font(FontConstants.thirtyFiveBold)
+                }
+            }
             .padding(.horizontal, 24)
             .alert(isPresented: $vm.showingAlert) {
                 Alert(title: Text("Something is wrong"), message: Text(vm.errorMessage), dismissButton: .default(Text("Okay")))
@@ -48,6 +52,7 @@ struct SignupView: View {
     }
     
     private var signUpWithApple: some View {
+
         SignInWithAppleButton(.continue) { request in
             appleAuth.appleButtonOnRequest(request: request)
         } onCompletion: { result in
@@ -55,10 +60,13 @@ struct SignupView: View {
                 await vm.signUpWithApple(currentNonce: appleAuth.currentNonce, result: result)
             }
         }
+        .cornerRadius(10)
         .frame(height: 56)
         
-        
-//        CustomButton(action: {},
+    //        CustomButton(action: {
+//            let request = ASAuthorizationAppleIDProvider().createRequest()
+//            appleAuth.appleButtonOnRequest(request: request)
+//        },
 //                     title: "Continue with Apple",
 //                     backgroundColor: Color(cgColor: CGColor(red: 0.02, green: 0.03, blue: 0.03, alpha: 1)),
 //                     image: Image("apple"))
@@ -88,7 +96,6 @@ struct SignupView: View {
     
     private var signUpWithEmail: some View {
         NavCustomButton(title: "Sign up with Email",
-                        backgroundColor: Color(.orange),
                         image: Image("email"),
                         destination: SignupWithEmailView())
     }
@@ -97,7 +104,6 @@ struct SignupView: View {
         NavButtonWithLeadingText(
             text: "Have an account?",
             buttonText: "Login",
-            buttonColor: Color(.orange),
             destination: SigninView())
     }
 }

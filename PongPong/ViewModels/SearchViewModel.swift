@@ -17,6 +17,7 @@ class SearchViewModel: ObservableObject {
     @Published var lastDocumentSnapshot: QueryDocumentSnapshot?
     
     private var isFetchingMore = true
+    private let limit = 50
     
     func searchBooksAgain(searchText: String) async {
         books?.removeAll()
@@ -43,14 +44,14 @@ class SearchViewModel: ObservableObject {
             if let lastDocumentSnapshot = lastDocumentSnapshot {
                 documents = try await bookCollection
                     .start(afterDocument: lastDocumentSnapshot)
-                    .limit(to: 5)
+                    .limit(to: limit)
                     .whereField(FirebaseConstants.titleField, isGreaterThanOrEqualTo: searchText.lowercased())
                     .whereField(FirebaseConstants.titleField, isLessThan: (searchText.lowercased() + "z"))
                     .getDocuments()
                     .documents
             } else {
                 documents = try await bookCollection
-                    .limit(to: 5)
+                    .limit(to: limit)
                     .whereField(FirebaseConstants.titleField, isGreaterThanOrEqualTo: searchText.lowercased())
                     .whereField(FirebaseConstants.titleField, isLessThan: (searchText.lowercased() + "z"))
                     .getDocuments()
