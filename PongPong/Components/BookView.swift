@@ -17,7 +17,10 @@ struct BookView: View {
     
     var body: some View {
         Button {
-            showBookContentView.toggle()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+                // Code to be executed after the delay
+                showBookContentView.toggle()
+            }
         } label: {
             VStack(alignment: .leading, spacing: 5) {
                 ZStack(alignment: .bottom) {
